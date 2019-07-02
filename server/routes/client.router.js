@@ -20,6 +20,15 @@ router.get('/song', async (req, res) => {
         });
 });
 
+router.get('/details/:id', async (req, res) => {
+    pool.query('SELECT * FROM "song" WHERE "id"=$1 LIMIT 1;', [req.params.id])
+        .then(result => res.send(result.rows[0]))
+        .catch(error => {
+            console.log('error in SELECT query', error);
+            res.sendStatus(500);
+        });
+});
+
 //send song requests to the database
 router.post('/', (req, res) => {
     pool.query(`INSERT INTO "song" ("title", artist", "lyric", "original_key", "tempo", "BPM", "CCLI#", "spotify_uri", "album_cover")

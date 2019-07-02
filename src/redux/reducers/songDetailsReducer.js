@@ -1,6 +1,6 @@
-const songsReducer = (state = [], action) => {
+const songsDetailsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_SONGS':
+        case 'GET_SONG_DETAILS':
             return action.payload;
         default:
             return state;
@@ -9,5 +9,5 @@ const songsReducer = (state = [], action) => {
 
   // user will be on the redux state at:
   // state.user
-  export default songsReducer;
+  export default songsDetailsReducer;
   

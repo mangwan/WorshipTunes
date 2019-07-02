@@ -4,24 +4,25 @@ import { withRouter } from "react-router";
 
 
 class SongGrid extends Component {
-  handleClickSongGrid = () => {
-    console.log('in handleclick song grid')
-    console.log(this.props)
+  handleClick = (songId) => {
+    console.log('in handleclick song grid');
     this.props.history.push('/song-details');
+    this.props.dispatch({
+      type: 'GET_SONG_DETAILS',
+      payload: {songId}
+    });
   }
 
   render() {
     return (
       <>
-      {this.props.songs.map((song) => {
-        return (
-          <div onClick={this.handleClickSongGrid}>
-            <img src={song.album_cover} alt="album_cover" />
-            <p song={song}>Artist: {song.artist}</p>
-            <p song={song}>Title: {song.title}</p>
+      {this.props.songs.map(song => (
+          <div key={song.id}>
+            <img onClick={() => this.handleClick(song.id)}  src={song.album_cover} alt="album_cover" />
+            <p onClick={() => this.handleClick(song.id)}  song={song}>Artist: {song.artist}</p>
+            <p onClick={() => this.handleClick(song.id)}  song={song}>Title: {song.title}</p>
           </div>
-        );
-      })}
+      ))}
       <pre>
           {JSON.stringify(this.props, null, 2)}
         </pre>

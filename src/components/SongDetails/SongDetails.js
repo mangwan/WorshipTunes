@@ -6,7 +6,8 @@ class SongDetails extends Component {
     key: "A",
     artist: "Hillsong United",
     title: "Relentless",
-    lyrics: `INST:
+    lyrics: 
+    `INST:
     A  D  F#m  D
     
     VERSE 1:
@@ -139,6 +140,7 @@ class SongDetails extends Component {
   render() {
     return (
       <div>
+          <pre>{JSON.stringify(this.props, null, 2)}</pre>
         <h1>Song Details</h1>
         <button onClick={() => this.props.history.push('/')}>Return to Search</button>
               <p>Artist: {this.state.artist}</p>
