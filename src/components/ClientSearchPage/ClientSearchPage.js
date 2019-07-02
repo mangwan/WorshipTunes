@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+import SongGrid from '../SongGrid/SongGrid';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -23,21 +23,7 @@ class ClientSearchPage extends Component {
         </div>
         <div>
           <h1>Song List</h1>
-          {/* <Grid container spacing={3}>
-                        <Grid item xs={12}>{this.props.movie.title}</Grid>
-                        <Grid item xs={3}><img data-id={this.props.movie.id} src={this.props.movie.poster} alt="movie poster" onClick={this.handleClick} /></Grid>
-                        <Grid item xs={9}>{this.props.movie.description}</Grid>
-                    </Grid> */}
-                    {this.props.songs.map((song) => {
-                        return (
-                            <>
-                                <img src={song.album_cover}/>
-                                <p song={song}>Artist: {song.artist}</p>
-                                <p song={song}>Title: {song.title}</p>
-                                <br />
-                            </>
-                        );
-                    })}
+              <SongGrid />
         </div>
         <pre>
           {JSON.stringify(this.props, null, 2)}
