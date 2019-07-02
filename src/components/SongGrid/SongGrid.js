@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+
 
 class SongGrid extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: 'GET_SONGS' })
+  handleClickSongGrid = () => {
+    console.log('in handleclick song grid')
+    console.log(this.props)
+    this.props.history.push('/song-details');
   }
 
   render() {
@@ -11,14 +15,16 @@ class SongGrid extends Component {
       <>
       {this.props.songs.map((song) => {
         return (
-          <>
+          <div onClick={this.handleClickSongGrid}>
             <img src={song.album_cover} alt="album_cover" />
             <p song={song}>Artist: {song.artist}</p>
             <p song={song}>Title: {song.title}</p>
-            <br />
-          </>
+          </div>
         );
       })}
+      <pre>
+          {JSON.stringify(this.props, null, 2)}
+        </pre>
       </>
     );
   }
@@ -27,5 +33,5 @@ class SongGrid extends Component {
 const mapStateToProps = reduxState => reduxState; 
   
 
-export default connect(mapStateToProps)(SongGrid);
+export default connect(mapStateToProps)(withRouter(SongGrid));
 
