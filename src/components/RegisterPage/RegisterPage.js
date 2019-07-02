@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 class RegisterPage extends Component {
   state = {
+    first_name: '',
+    last_name: '',
     username: '',
     password: '',
   };
@@ -14,6 +16,8 @@ class RegisterPage extends Component {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
           username: this.state.username,
           password: this.state.password,
         },
@@ -41,7 +45,29 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1>Register Users</h1>
+          <div>
+            <label htmlFor="first_name">
+              First Name:
+              <input
+                type="text"
+                name="first_name"
+                value={this.state.first_name}
+                onChange={this.handleInputChangeFor('first_name')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="last_name">
+              Last Name:
+              <input
+                type="text"
+                name="last_name"
+                value={this.state.last_name}
+                onChange={this.handleInputChangeFor('last_name')}
+              />
+            </label>
+          </div>
           <div>
             <label htmlFor="username">
               Username:
