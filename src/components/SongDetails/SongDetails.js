@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 class SongDetails extends Component {
+  componentDidMount = () => {
+    this.props.dispatch({
+      type: 'GET_SONG_DETAILS',
+      payload: this.props.match.params.id,
+    });
+  }
 
   state = {
     artist: '',
@@ -89,7 +96,6 @@ class SongDetails extends Component {
     const songDetails = this.props.songDetails;
     return (
       <div>
-          <pre>{JSON.stringify(this.props, null, 2)}</pre>
         <h1>Song Details</h1>
         <button onClick={() => this.props.history.push('/')}>Return to Search</button>
               <p>Artist: {songDetails.artist}</p>
@@ -117,4 +123,4 @@ class SongDetails extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(SongDetails);
+export default connect(mapStateToProps)(withRouter(SongDetails));

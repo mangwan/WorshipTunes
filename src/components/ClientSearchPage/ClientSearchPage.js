@@ -26,9 +26,9 @@ class ClientSearchPage extends Component {
           <h1>Song List</h1>
               <SongGrid />
         </div>
-        <pre>
+        {/* <pre>
           {JSON.stringify(this.props, null, 2)}
-        </pre>
+        </pre> */}
       </>
     );
   }

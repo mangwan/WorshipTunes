@@ -10,12 +10,7 @@ class SongGrid extends Component {
   handleClick = (songId) => {
     console.log('song id', songId)
     console.log('in handleclick song grid');
-    this.props.dispatch({
-      type: 'GET_SONG_DETAILS',
-      // id: songId
-      payload: songId,
-    });
-    this.props.history.push('/song-details');
+    this.props.history.push(`/song-details/${songId}`);
   }
 
   render() {
@@ -32,9 +27,9 @@ class SongGrid extends Component {
               <br />
             </div>
           ))}
-          <pre>
+          {/* <pre>
             {JSON.stringify(this.props, null, 2)}
-          </pre>
+          </pre> */}
         </Grid>
       </div >
     );

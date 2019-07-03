@@ -57,7 +57,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/song-details"
+              path="/song-details/:id"
               component={SongDetails} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

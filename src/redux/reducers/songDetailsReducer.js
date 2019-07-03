@@ -1,6 +1,6 @@
 const songsDetailsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'GET_SONG_DETAILS':
+        case 'SET_SONG_DETAILS':
             console.log("in reducer")
             return action.payload;
         default:
