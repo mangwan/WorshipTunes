@@ -31,7 +31,7 @@ router.get('/song/:id/details', async (req, res) => {
 
 //send song requests to the database
 router.post('/', (req, res) => {
-    pool.query(`INSERT INTO "song" ("title", artist", "lyric", "original_key", "tempo", "BPM", "CCLI#", "spotify_uri", "album_cover")
+    pool.query(`INSERT INTO "song" ("title", artist", "lyric", "original_key", "tempo", "BPM", "CCLI", "spotify_uri", "album_cover")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, [req.body.title, req.body.artist, req.body.lyric, req.body.original_key, req.body.tempo, req.body.BPM, req.body.CCLI, req.body.spotify_uri, req.body.album_cover])
     .then(response => {
         res.sendStatus(201)

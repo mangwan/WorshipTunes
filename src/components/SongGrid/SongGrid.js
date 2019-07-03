@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 class SongGrid extends Component {
   handleClick = (songId) => {
     console.log('song id', songId)
-    console.log('in handleclick song grid');
     this.props.history.push(`/song-details/${songId}`);
   }
 

@@ -4,9 +4,9 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* fetchSongDetails(action) {
     console.log('log action', action);
     console.log('log action.payload', action.payload);
-    const songResponse = yield axios.get(`/client/song/${action.payload}/details`);
-    console.log('after get:', songResponse)
+    const songResponse = yield axios.get(`/client/song/${action.payload}/details`)
     yield put({type: 'SET_SONG_DETAILS', payload: songResponse.data});
+    console.log('song response data', songResponse.data)
 }
 
 function* songDetailsSaga() {
