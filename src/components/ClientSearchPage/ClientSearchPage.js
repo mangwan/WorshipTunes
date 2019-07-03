@@ -12,6 +12,7 @@ class ClientSearchPage extends Component {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
 
+
   render() {
     return (
       <>

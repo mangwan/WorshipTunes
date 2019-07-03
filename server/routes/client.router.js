@@ -20,7 +20,7 @@ router.get('/song', async (req, res) => {
         });
 });
 
-router.get('/details/:id', async (req, res) => {
+router.get('/song/:id/details', async (req, res) => {
     pool.query('SELECT * FROM "song" WHERE "id"=$1 LIMIT 1;', [req.params.id])
         .then(result => res.send(result.rows[0]))
         .catch(error => {

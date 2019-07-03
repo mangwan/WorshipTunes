@@ -2,65 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class SongDetails extends Component {
+
   state = {
-    key: "A",
-    artist: "Hillsong United",
-    title: "Relentless",
-    lyrics: 
-    `INST:
-    A  D  F#m  D
-    
-    VERSE 1:
-    A                      D     F#m     D
-       Salvation sounds a new beginning
-    A                       D     F#m     D
-       As distant hearts begin believing
-    A                      D    F#m
-       Redemption’s bid is unrelenting
-          D        A
-    Your love goes on
-          D        F#m
-    Your love goes on
-    
-    PRE-CHORUS:
-         D              F#m
-    You carry us, carry us
-              A           E
-    When the world gives way
-         D              F#m
-    You cover us, cover us
-               A        E
-    With Your endless grace
-    
-    CHORUS:
-    A                   D
-        Your love is relentless
-    F#m                 D
-        Your love is relentless
-    A                   D
-        Your love is relentless
-    F#m                 D
-        Your love is relentless
-    
-    VERSE 2:
-    The time is up for chasing shadows
-    You gave the world a light to follow
-    A hope that shines beyond tomorrow
-    Your love goes on
-    Your love goes on
-    
-    INST 2:
-    E   F#m   D   A
-    
-    BRIDGE:
-    E                       F#m
-       Tearing through the veil of darkness
-    D                  A                 E
-       Breaking every chain, You set us free
-                      F#m
-    Fighting for the furthest heart
-         D             A            E
-    You gave your life   for all to see`
+    artist: '',
+    title: '',
+    original_key: '',
+    lyric: '',
   }
 
   handleChange = (event) => {
@@ -138,15 +85,17 @@ class SongDetails extends Component {
     })
   }
   render() {
+    //calling in the song details reducer
+    const songDetails = this.props.songDetails;
     return (
       <div>
           <pre>{JSON.stringify(this.props, null, 2)}</pre>
         <h1>Song Details</h1>
         <button onClick={() => this.props.history.push('/')}>Return to Search</button>
-              <p>Artist: {this.state.artist}</p>
-              <p>Title: {this.state.title}</p>
-              <p>Key: {this.state.key}</p>
-              <select value={this.state.key} onChange={this.handleChange}>
+              <p>Artist: {songDetails.artist}</p>
+              <p>Title: {songDetails.title}</p>
+              <p>Key: {songDetails.original_key}</p>
+              <select value={this.state.original_key} onChange={this.handleChange}>
                 <option>Ab</option>
                 <option>A</option>
                 <option>Bb</option>
@@ -160,7 +109,7 @@ class SongDetails extends Component {
                 <option>F#</option>
                 <option>G</option>
               </select>
-              <pre>Key: {this.state.lyrics}</pre>
+              <pre>Lyric: {songDetails.lyric}</pre>
       </div>
     );
   }
