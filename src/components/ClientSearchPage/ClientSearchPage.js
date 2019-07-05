@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SongGrid from '../SongGrid/SongGrid';
 
+import '../ClientSearchPage/ClientSearchPage.css';
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
@@ -15,7 +16,7 @@ class ClientSearchPage extends Component {
 
   render() {
     return (
-      <>
+      <div className="container">
         <div>
           <h2>Search for a Song</h2>
           <input></input>
@@ -23,13 +24,13 @@ class ClientSearchPage extends Component {
 
         </div>
         <div>
-          <h1>Song List</h1>
+          <h1 className="songlist">Song List</h1>
               <SongGrid />
         </div>
         {/* <pre>
           {JSON.stringify(this.props, null, 2)}
         </pre> */}
-      </>
+      </div>
     );
   }
 }

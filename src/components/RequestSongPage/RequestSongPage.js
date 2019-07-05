@@ -7,9 +7,27 @@ import React from 'react';
 
 const InfoPage = () => (
   <div>
-    <p>
+    <h2>
       Request a Song
-    </p>
+    </h2>
+    <label>Name</label>
+    <br/>
+    <input type="text"></input>
+    <br/>
+    <label>Email</label>
+    <br/>
+    <input type="text"></input>
+    <br/>
+    <label>Song Title</label>
+    <br/>
+    <input type="text"></input>
+    <br/>
+    <label>Artist Name</label>
+    <br/>
+    <input type="text"></input>
+    <br/>
+    <button>Submit</button>
+
   </div>
 );
 

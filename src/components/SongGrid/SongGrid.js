@@ -18,10 +18,10 @@ class SongGrid extends Component {
         <Grid container spacing={3}>
           {this.props.songs.map(song => (
             <div key={song.id}>
-              <Grid item xs={6}>
-                <img onClick={() => this.handleClick(song.id)} src={song.album_cover} alt="album_cover" />
-                <h4 onClick={() => this.handleClick(song.id)} song={song}>Artist: {song.artist}</h4>
-                <p onClick={() => this.handleClick(song.id)} song={song}>Title: {song.title}</p>
+              <Grid item xs={3}>
+                <img onClick={() => this.handleClick(song.id)} src={song.album_cover} alt="album_cover" /> </Grid>
+                <Grid item xs={6}> <h4 onClick={() => this.handleClick(song.id)} song={song}>Artist: {song.artist}</h4> </Grid>
+                <Grid item xs={6}> <p onClick={() => this.handleClick(song.id)} song={song}>Title: {song.title}</p>
               </Grid>
               <br />
             </div>

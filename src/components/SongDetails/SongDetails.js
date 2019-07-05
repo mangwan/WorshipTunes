@@ -3,27 +3,37 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 
 class SongDetails extends Component {
   componentDidMount = () => {
-    this.props.dispatch({
-      type: 'GET_SONG_DETAILS',
-      payload: this.props.match.params.id,
-    });
-    console.log('this props', this.props)
+    const song_id = this.props.match.params.id
+    axios.get(`/client/song/${song_id}/details`).then(response => {
+      this.props.dispatch({
+        type: 'SET_SONG_DETAILS',
+        payload: response.data,
+      });
+      this.setState(
+        {
+        ...this.props.songDetails,
+        current_key: this.props.songDetails.original_key
+        }
+    )
+    })
   }
-
 
   state = {
     artist: '',
     title: '',
-    original_key: this.props.songDetails.original_key,
-    lyrics: this.props.songDetails.lyrics,
+    original_key: '',
+    current_key: '',
+    lyrics: '',
+    tempo: '',
+    bpm: '',
+    ccli: '',
   }
 
   handleChange = (event) => {
-    console.log('this.state', this.state)
-    console.log('in select handlechage', event.target.value)
     const key_dictionary = {
       C: 0,
       Db: 1,
@@ -65,12 +75,11 @@ class SongDetails extends Component {
     const value_difference = new_key_value - original_key_value
     console.log("value_difference: ", value_difference)
 
-    // let new_lyrics = this.state.lyrics
     let new_lyrics = this.props.songDetails.lyrics
     Object.entries(key_dictionary).map((entry) => {
       const chord = entry[0]
       const number = entry[1]
-      let regex = new RegExp(`(?![A-Z])${chord} `, 'g');
+      let regex = new RegExp(`(?<![A-Z])${chord} `, 'g');
       new_lyrics = new_lyrics.replace(regex, `${number} `);
       regex = new RegExp(` ${chord}(?![:A-z])`, 'g')
       new_lyrics = new_lyrics.replace(regex, ` ${number}`)
@@ -86,33 +95,31 @@ class SongDetails extends Component {
         new_chord_value -= 12
       }
       const new_chord = number_to_chord_dictionary[new_chord_value]
-      let regex = new RegExp(`(?![A-Z])${number} `, 'g')
+      let regex = new RegExp(`(?<![A-Z])${number} `, 'g')
       new_lyrics = new_lyrics.replace(regex, `${new_chord} `)
-      regex = new RegExp(` ${number}(?!:)`, 'g')
+      regex = new RegExp(` ${number}(?!:A-z)`, 'g')
       new_lyrics = new_lyrics.replace(regex, ` ${new_chord}`)
     })
+    
     this.setState({
       artist: this.state.artist,
       title: this.state.title,
-      original_key: new_key,
+      current_key: new_key,
       lyrics: new_lyrics
     })
     console.log('new state', this.state)
   }
   render() {
-    //calling in the song details reducer
-    const songDetails = this.props.songDetails;
-    console.log('songDetails', songDetails)
     return (
       <div>
         <button onClick={() => this.props.history.push('/')}>Return to Search</button>
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <h2>Chords</h2>
-            <p>Artist: {songDetails.artist}</p>
-            <p>Title: {songDetails.title}</p>
+            <p>Artist: {this.state.artist}</p>
+            <p>Title: {this.state.title}</p>
             <p>Key: {this.state.original_key}</p>
-            <select value={this.state.original_key} onChange={this.handleChange}>
+            <select value={this.state.current_key} onChange={this.handleChange}>
               <option>Ab</option>
               <option>A</option>
               <option>Bb</option>
@@ -130,10 +137,10 @@ class SongDetails extends Component {
           </Grid>
           <Grid item xs={6}>
             <h2>Song Details</h2>
-            <p>Tempo: {songDetails.tempo}</p>
-            <p>BPM: {songDetails.BPM}</p>
-            <p>Original Key: {songDetails.original_key}</p>
-            <p>CCLI#: {songDetails.CCLI}</p>
+            <p>Tempo: {this.state.tempo}</p>
+            <p>BPM: {this.state.BPM}</p>
+            <p>Original Key: {this.state.original_key}</p>
+            <p>CCLI#: {this.state.CCLI}</p>
           </Grid>
         </Grid>
 
