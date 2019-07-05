@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SongGrid from '../SongGrid/SongGrid';
-
+// import photo from '../../../public/images/moutain.jpg'
 import '../ClientSearchPage/ClientSearchPage.css';
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -16,20 +16,25 @@ class ClientSearchPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div>
-          <h2>Search for a Song</h2>
-          <input></input>
-          <button>Search</button>
+      <div>
+        <header>
+          <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
+        </header>
+        <div className="container">
+          <div>
+            <h2>Search for a Song</h2>
+            <input></input>
+            <button>Search</button>
 
-        </div>
-        <div>
-          <h1 className="songlist">Song List</h1>
-              <SongGrid />
-        </div>
-        {/* <pre>
+          </div>
+          <div>
+            <h1 className="songlist">Song List</h1>
+            <SongGrid />
+          </div>
+          {/* <pre>
           {JSON.stringify(this.props, null, 2)}
         </pre> */}
+        </div>
       </div>
     );
   }
@@ -38,7 +43,7 @@ class ClientSearchPage extends Component {
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = reduxState => reduxState; 
-  
+const mapStateToProps = reduxState => reduxState;
+
 
 export default connect(mapStateToProps)(ClientSearchPage);
