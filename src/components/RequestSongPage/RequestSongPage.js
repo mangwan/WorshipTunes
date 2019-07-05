@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // This is one of our simplest components
@@ -7,6 +7,36 @@ import { connect } from 'react-redux';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 class RequestSongPage extends Component {
+  state = {
+    name: '',
+    email: '',
+    song_title: '',
+    artist_name: '',
+  };
+
+  registerUser = (event) => {
+    event.preventDefault();
+    if (this.state.name && this.state.email && this.state.song_title && this.state.artist_name) {
+      this.props.dispatch({
+        type: 'SET_SONG_REQUEST',
+        payload: {
+          name: this.state.name,
+          email: this.state.email,
+          song_title: this.state.song_title,
+          artist_name: this.state.artist_name,
+        },
+      });
+    } else {
+      alert('Please fill out all fields!');
+    }
+  }
+
+  handleInputChangeFor = propertyName => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -16,52 +46,60 @@ class RequestSongPage extends Component {
         <div>
           <h2>
             Request a Song
-      </h2>
+        </h2>
           <div>
-            <form>
+            <form onSubmit={this.registerUser}>
               <label>Name</label>
-              <br />
-              <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleInputChangeFor('name')}
-              />
-              <br />
-              <label>Email</label>
-              <br />
-              <input
-                type="text"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleInputChangeFor('email')}
-              />
-              <br />
-              <label>Song Title</label>
-              <br />  
-              <input
-                type="text"
-                name="songTitle"
-                value={this.state.songTitle}
-                onChange={this.handleInputChangeFor('songTitle')}
-              />
-              <br />
-              <label>Artist Name</label>
-              <br />
-              <input
-                type="text"
-                name="artistName"
-                value={this.state.artistName}
-                onChange={this.handleInputChangeFor('artistName')}
-              />
-              <br />
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleInputChangeFor('name')}
+                />
+              </div>
+              <div>
+                <label>Email</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleInputChangeFor('email')}
+                />
+              </div>
+              <div>
+                <label>Song Title</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="song_title"
+                  value={this.state.song_title}
+                  onChange={this.handleInputChangeFor('song_title')}
+                />
+              </div>
+              <div>
+                <label>Artist Name</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="artist_name"
+                  value={this.state.artist_name}
+                  onChange={this.handleInputChangeFor('artist_name')}
+                />
+              </div>
+              <div>
+                <input
+                  type="submit"
+                  name="submit"
+                  value="Submit"
+                />
+              </div>
             </form>
           </div>
-          <center>
-            <button>
-              Submit
-          </button>
-          </center>
         </div>
       </div>
     );
