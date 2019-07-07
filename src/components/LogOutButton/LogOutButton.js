@@ -9,7 +9,7 @@ const LogOutButton = props => (
     className={props.className}
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
   >
-    Welcome, {props.user.username} Log Out
+    {props.user.username} Log Out
   </button>
    /* <p>Your ID is: {props.user.id}</p> */
 );

@@ -31,8 +31,8 @@ router.get('/song/:id/details', async (req, res) => {
 
 //send song requests to the database
 router.post('/song-request', (req, res) => {
-    pool.query(`INSERT INTO "song_requests" ("name", "email", "title", "artist_name")
-    VALUES ($1, $2, $3, $4);`, [req.body.name, req.body.email, req.body.title, req.body.artist_name])
+    pool.query(`INSERT INTO "song_requests" ("name", "email", "song_title", "artist_name")
+    VALUES ($1, $2, $3, $4);`, [req.body.name, req.body.email, req.body.song_title, req.body.artist_name])
     .then(response => {
         res.sendStatus(201)
     }).catch (error => {

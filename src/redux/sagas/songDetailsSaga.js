@@ -8,7 +8,8 @@ function* fetchSongDetails(action) {
 }
 
 function* songDetailsSaga() {
-    yield takeEvery('GET_SONG_DETAILS', fetchSongDetails)
+    yield takeEvery('SET_SONG_DETAILS', fetchSongDetails)
 }
 
 export default songDetailsSaga;
+

@@ -4,7 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import songSaga from './songSaga';
 import songDetailsSaga from './songDetailsSaga';
-
+import songRequestSaga from './songRequestSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,5 +20,6 @@ export default function* rootSaga() {
     userSaga(),
     songSaga(),
     songDetailsSaga(),
+    songRequestSaga(),
   ]);
 }
