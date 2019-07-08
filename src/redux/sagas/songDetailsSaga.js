@@ -8,8 +8,18 @@ function* fetchSongDetails(action) {
     console.log('song response data', songResponse.data)
 }
 
+function* editSongDetails(action) {
+    console.log('in edit song details saga', action)
+    // const editSong = yield axios.get(`/client/song/${action.payload}/details`)
+    // yield put({type: 'SET_SONG_DETAILS', payload: songResponse.data});
+    // yield put({ type: 'SET_LYRICS', payload: songResponse.data.lyrics })
+    // console.log('song response data', songResponse.data)
+}
+
 function* songDetailsSaga() {
     yield takeEvery('GET_SONG_DETAILS', fetchSongDetails)
+    yield takeEvery('EDIT_SONG_DETAILS', editSongDetails)
+
 }
 
 export default songDetailsSaga;
