@@ -10,7 +10,7 @@ class AddSong extends Component {
         BPM: '',
         CCLI: '',
         albumUrl: '',
-        spotifyUrl: '',
+        spotifyUri: '',
         originalKey: '',
     };
 
@@ -27,6 +27,7 @@ class AddSong extends Component {
             this.state.artistName &&
             this.state.lyrics &&
             this.state.tempo &&
+            //need to add if statement to check if BPM and CCLI are nubmers
             this.state.originalKey) {
             this.props.dispatch({
                 type: 'ADD_NEW_SONG',
@@ -38,7 +39,7 @@ class AddSong extends Component {
                     BPM: this.state.BPM,
                     CCLI: this.state.CCLI,
                     albumUrl: this.state.albumUrl,
-                    spotifyUrl: this.state.spotifyUrl,
+                    spotifyUri: this.state.spotifyUri,
                     originalKey: this.state.originalKey,
                 },
             });
@@ -50,7 +51,7 @@ class AddSong extends Component {
                 BPM: '',
                 CCLI: '',
                 albumUrl: '',
-                spotifyUrl: '',
+                spotifyUri: '',
                 originalKey: '',
             });
             alert('New song added to the database!');
@@ -153,9 +154,9 @@ class AddSong extends Component {
                             <div>
                                 <input
                                     type="text"
-                                    name="spotifyUrl"
-                                    value={this.state.spotifyUrl}
-                                    onChange={this.handleInputChangeFor('spotifyUrl')}
+                                    name="spotifyUri"
+                                    value={this.state.spotifyUri}
+                                    onChange={this.handleInputChangeFor('spotifyUri')}
                                 />
                             </div>
                             <div>

@@ -44,4 +44,17 @@ router.delete('/delete/song-requests/:id', (req, res) => {
         })
 });
 
+//add new song
+router.post('/add-song', (req, res) => {
+    pool.query(`INSERT INTO "song" ("title", "artist", "lyrics", "original_key", "tempo", "BPM", "CCLI", "spotify_uri", "album_cover")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`, 
+    [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo, 
+        req.body.BPM, req.body.CCLI, req.body.spotifyUri, req.body.albumUrl])
+    .then(response => {
+        res.sendStatus(201)
+    }).catch (error => {
+        console.log('error posting new song', error)
+    })
+});
+
 module.exports = router;
