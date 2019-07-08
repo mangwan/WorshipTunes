@@ -13,6 +13,23 @@ class ManageSongs extends Component {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
 
+  handleClickDelete = (songId) => {
+    console.log('song id', songId)
+    console.log('handleClick Delete Song')
+    // if (window.confirm('Are you sure you want to delete this song?')){
+    //   console.log("You pressed OK!")
+    //   // this.props.dispatch({ 
+    //   //   type: 'DELETE_SONG',
+    //   //   payload: response.data
+    //   //   })
+    // }
+  }
+
+  handleClickEdit = (songId) => {
+    console.log('song id', songId)
+    console.log('handleClick Edit Song')
+  }
+
   render() {
     return (
       <div>
@@ -27,34 +44,33 @@ class ManageSongs extends Component {
 
           </div>
           <div>
-            <h1 className="songlist">Song List</h1>
             <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Title</TableCell>
-                                            <TableCell>Artist</TableCell>
-                                            <TableCell>Edit</TableCell>
-                                            <TableCell>Delete</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {this.props.songs.map(song=>
-                                            <TableRow key={song.id}>
-                                                <TableCell>
-                                                    {song.title}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {song.artist}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <button>Edit</button>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <button>Delete</button>
-                                                </TableCell>
-                                            </TableRow>)}
-                                    </TableBody>
-                                </Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Artist</TableCell>
+                  <TableCell>Edit</TableCell>
+                  <TableCell>Delete</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.props.songs.map(song =>
+                  <TableRow key={song.id}>
+                    <TableCell>
+                      {song.title}
+                    </TableCell>
+                    <TableCell>
+                      {song.artist}
+                    </TableCell>
+                    <TableCell>
+                      <button onClick={() => this.handleClickEdit(song.id)} song={song}>Edit</button>
+                    </TableCell>
+                    <TableCell>
+                      <button onClick={() => this.handleClickDelete(song.id)} song={song}>Delete</button>
+                    </TableCell>
+                  </TableRow>)}
+              </TableBody>
+            </Table>
           </div>
           {/* <pre>
           {JSON.stringify(this.props, null, 2)}
