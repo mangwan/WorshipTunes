@@ -1,11 +1,10 @@
-// import axios from 'axios';
+import axios from 'axios';
 import {takeEvery, put} from 'redux-saga/effects';
 
 function* fetchDeleteSong(action) {
     console.log('in delete saga. action', action)
-    // const songResponse = yield axios.get(`/client/song/${action.payload}/details`)
-    // yield put({type: 'SET_SONG_DETAILS', payload: songResponse.data});
-    // console.log('song response data', songResponse.data)
+    yield axios.delete(`/admin/delete/${action.payload}`)
+    yield put({type: 'GET_SONGS'});
 }
 
 function* songDetailsSaga() {
