@@ -12,4 +12,8 @@ const router = express.Router();
 //         console.log('error posting images:', error)
 //     })
 // });
+
+
+//post all songs in the the database
+
 module.exports = router;
