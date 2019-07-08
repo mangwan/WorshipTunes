@@ -72,7 +72,6 @@ class EditSong extends Component {
                 <div>
                     <form onSubmit={this.editSong}>
                         <h2>Edit Song</h2>
-                        <p>*reqiured</p>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <label>Song Title*</label>

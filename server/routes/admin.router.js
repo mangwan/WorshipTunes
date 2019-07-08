@@ -60,16 +60,16 @@ router.post('/add-song', (req, res) => {
 //update song
 router.put('/edit-song/:id', (req, res) => {
     pool.query(`UPDATE "song" SET 
-    "title"=$1,
-"artist"=$2,
-"lyrics"=$3,
-"original_key"=$4,
-"tempo"=$5,
-"BPM"=$6,
-"CCLI"=$7,
-"spotify_uri"=$8,
-"album_cover"=$9
-WHERE "id"=$10`,
+        "title"=$1,
+        "artist"=$2,
+        "lyrics"=$3,
+        "original_key"=$4,
+        "tempo"=$5,
+        "BPM"=$6,
+        "CCLI"=$7,
+        "spotify_uri"=$8,
+        "album_cover"=$9
+        WHERE "id"=$10`,
         [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo,
         req.body.BPM, req.body.CCLI, req.body.spotifyUri, req.body.albumUrl, req.params.id])
         .then(result => res.send(result.rows[0]))
