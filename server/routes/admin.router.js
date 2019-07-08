@@ -14,16 +14,24 @@ const router = express.Router();
 // });
 
 
-//post all songs in the the database
+//get all song requests from database
+router.get('/song-request', (req, res) => {
+    pool.query('SELECT * FROM "song_requests"')
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('error in SELECT query', error);
+            res.sendStatus(500);
+        });
+});
 
 //delete songs
 router.delete('/delete/:id', (req, res) => {
     pool.query(`DELETE FROM "song" WHERE "id"=$1;`, [req.params.id])
-    .then(result => {
-        res.sendStatus(201)
-    }).catch (error => {
-        console.log('error posting images:', error)
-    })
+        .then(result => {
+            res.sendStatus(201)
+        }).catch(error => {
+            console.log('error in DELETE query:', error)
+        })
 });
 
 module.exports = router;
