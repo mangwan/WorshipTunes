@@ -16,4 +16,14 @@ const router = express.Router();
 
 //post all songs in the the database
 
+//delete songs
+router.delete('/delete/:id', (req, res) => {
+    pool.query(`DELETE FROM "song" WHERE "id"=$1;`, [req.params.id])
+    .then(result => {
+        res.sendStatus(201)
+    }).catch (error => {
+        console.log('error posting images:', error)
+    })
+});
+
 module.exports = router;

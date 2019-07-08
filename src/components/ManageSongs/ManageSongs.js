@@ -9,6 +9,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 class ManageSongs extends Component {
+state = {
+  songs: this.props.songs,
+}
+
   componentDidMount() {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
@@ -16,13 +20,13 @@ class ManageSongs extends Component {
   handleClickDelete = (songId) => {
     console.log('song id', songId)
     console.log('handleClick Delete Song')
-    // if (window.confirm('Are you sure you want to delete this song?')){
-    //   console.log("You pressed OK!")
-    //   // this.props.dispatch({ 
-    //   //   type: 'DELETE_SONG',
-    //   //   payload: response.data
-    //   //   })
-    // }
+    if (window.confirm('Are you sure you want to delete this song?')){
+      console.log("You pressed OK!")
+      this.props.dispatch({ 
+        type: 'DELETE_SONG',
+        payload: songId,
+        })
+    }
   }
 
   handleClickEdit = (songId) => {
