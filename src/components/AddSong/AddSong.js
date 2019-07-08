@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { TextField } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
+const styles = {
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
+        width: '80%',
+    },
+    title: {
+        textAlign: 'center',
+        // color: '#F7882F',
+        fontSize: '22px',
+        marginTop: '80px',
+    },
+    button: {
+        marginTop: '30px',
+
+    },
+};
+
 class AddSong extends Component {
     state = {
         songTitle: '',
@@ -63,136 +91,133 @@ class AddSong extends Component {
     render() {
         return (
             <div>
-                <header>
-                    <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
-                </header>
-                <div>
-                    <div>
-                        <form onSubmit={this.addNewSong}>
-                            <h2>Add a Song</h2>
-                            <p>required field*</p>
-                            <label>Song Title*</label>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="songTitle"
-                                    value={this.state.songTitle}
-                                    onChange={this.handleInputChangeFor('songTitle')}
-                                />
-                            </div>
-                            <div>
-                                <label>Artist Name*</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="artistName"
-                                    value={this.state.artistName}
-                                    onChange={this.handleInputChangeFor('artistName')}
-                                />
-                            </div>
-                            <div>
-                                <label>Lyrics*</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="lyrics"
-                                    value={this.state.lyrics}
-                                    onChange={this.handleInputChangeFor('lyrics')}
-                                />
-                            </div>
-                            <div>
-                                <label>Tempo*</label>
-                            </div>
-                            <div>
-                                <select
-                                    name="tempo"
-                                    value={this.state.tempo}
-                                    onChange={this.handleInputChangeFor('tempo')}
-                                >
-                                    <option value="slow">Slow</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="fast">Fast</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>BPM</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="number"
-                                    name="BPM"
-                                    value={this.state.BPM}
-                                    onChange={this.handleInputChangeFor('BPM')}
-                                />
-                            </div>
-                            <div>
-                                <label>CCLI#</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="number"
-                                    name="CCLI"
-                                    value={this.state.CCLI}
-                                    onChange={this.handleInputChangeFor('CCLI')}
-                                />
-                            </div>
-                            <div>
-                                <label>Album URL</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="albumUrl"
-                                    value={this.state.albumUrl}
-                                    onChange={this.handleInputChangeFor('albumUrl')}
-                                />
-                            </div>
-                            <div>
-                                <label>Spotify URI</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="text"
-                                    name="spotifyUri"
-                                    value={this.state.spotifyUri}
-                                    onChange={this.handleInputChangeFor('spotifyUri')}
-                                />
-                            </div>
-                            <div>
-                                <label>Original Key*</label>
-                            </div>
-                            <div>
-                                <select
-                                    name="originalKey"
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={2}>
+                    </Grid>
+                    <Grid item xs={12} sm={8}>
+                        <form style={styles.container} onSubmit={this.addNewSong}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={12}>
+                                    <div style={styles.title}>
+                                        <h2>Add a Song</h2>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        label="Song Title"
+                                        id="songTitle"
+                                        value={this.state.songTitle}
+                                        onChange={this.handleInputChangeFor('songTitle')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        label="Artist Name"
+                                        id="artistName"
+                                        value={this.state.artistName}
+                                        onChange={this.handleInputChangeFor('artistName')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        label="Lyrics"
+                                        id="lyrics"
+                                        value={this.state.lyrics}
+                                        onChange={this.handleInputChangeFor('lyrics')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                            </Grid>
+                                <Grid item xs={6}>
+                                    <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                        <InputLabel htmlFor="status">Tempo</InputLabel>
+                                        <Select
+                                            input={<OutlinedInput name="Tempo" id="tempo" />}
+                                            value={this.state.tempo}
+                                            onChange={this.handleInputChangeFor('tempo')}
+                                        >
+                                            <MenuItem value="Slow">Slow</MenuItem>
+                                            <MenuItem value="Medium">Medium</MenuItem>
+                                            <MenuItem value="Fast">Fast</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6}>
+                                <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                <InputLabel htmlFor="status">Original Key</InputLabel>
+                                <Select
+                                    input={<OutlinedInput name="originalkey" id="originalkey" />}
                                     value={this.state.originalKey}
                                     onChange={this.handleInputChangeFor('originalKey')}
                                 >
-                                    <option>Ab</option>
-                                    <option>A</option>
-                                    <option>Bb</option>
-                                    <option>B</option>
-                                    <option>C</option>
-                                    <option>Db</option>
-                                    <option>D</option>
-                                    <option>Eb</option>
-                                    <option>E</option>
-                                    <option>F</option>
-                                    <option>F#</option>
-                                    <option>G</option>
-                                </select>
-                            </div>
+                                    <MenuItem value="Ab">Ab</MenuItem>
+                                    <MenuItem value="A">A</MenuItem>
+                                    <MenuItem value="Bb">Bb</MenuItem>
+                                    <MenuItem value="B">B</MenuItem>
+                                    <MenuItem value="C">C</MenuItem>
+                                    <MenuItem value="Dd">Db</MenuItem>
+                                    <MenuItem value="D">D</MenuItem>
+                                    <MenuItem value="Eb">Eb</MenuItem>
+                                    <MenuItem value="E">E</MenuItem>
+                                    <MenuItem value="F">F</MenuItem>
+                                    <MenuItem value="F#">F#</MenuItem>
+                                    <MenuItem value="G">G</MenuItem>
+                                </Select>
+                                </FormControl>
+                                </Grid>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        label="BPM"
+                                        id="BPM"
+                                        value={this.state.BPM}
+                                        onChange={this.handleInputChangeFor('BPM')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        label="CCLI#"
+                                        id="CCLI"
+                                        value={this.state.CCLI}
+                                        onChange={this.handleInputChangeFor('CCLI')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        label="Album URL"
+                                        id="albumUrl"
+                                        value={this.state.albumUrl}
+                                        onChange={this.handleInputChangeFor('albumUrl')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        label="Spotify URI"
+                                        id="spotifyUri"
+                                        value={this.state.spotifyUri}
+                                        onChange={this.handleInputChangeFor('spotifyUri')}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                    </Grid>
                             <div>
-                                <input
-                                    type="submit"
-                                    name="submit"
-                                    value="Submit"
-                                />
+                                <Button style={styles.button} variant="contained" color="primary" type="submit">Add Song</Button>
                             </div>
                         </form>
-                    </div>
-                </div>
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                    </Grid>
+                </Grid>
             </div >
         );
     }

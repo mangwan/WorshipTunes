@@ -64,7 +64,6 @@ class RequestSongPage extends Component {
       [propertyName]: event.target.value,
     });
   }
-
   render() {
     return (
       <div>
