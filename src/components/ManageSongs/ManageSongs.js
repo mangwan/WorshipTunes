@@ -19,7 +19,6 @@ state = {
 
   handleClickDelete = (songId) => {
     console.log('song id', songId)
-    console.log('handleClick Delete Song')
     if (window.confirm('Are you sure you want to delete this song?')){
       console.log("You pressed OK!")
       this.props.dispatch({ 

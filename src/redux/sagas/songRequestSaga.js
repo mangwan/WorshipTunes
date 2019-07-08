@@ -21,10 +21,16 @@ function* fetchSongRequests() {
     }
 }
 
+function* deleteSongRequest(action) {
+    console.log('in delete song reqeust saga', action)
+    yield axios.delete(`/admin/delete/song-requests/${action.payload}`)
+    yield put({type: 'FETCH_SONG_REQUESTS'});
+}
 
 function* songRequestSaga() {
     yield takeLatest('POST_SONG_REQUEST', postSongRequest);
     yield takeEvery('FETCH_SONG_REQUESTS', fetchSongRequests);
+    yield takeEvery('DELETE_SONG_REQUEST', deleteSongRequest)
 }
 
 export default songRequestSaga;

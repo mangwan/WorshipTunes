@@ -24,9 +24,19 @@ router.get('/song-request', (req, res) => {
         });
 });
 
-//delete songs
+//delete songs 
 router.delete('/delete/:id', (req, res) => {
     pool.query(`DELETE FROM "song" WHERE "id"=$1;`, [req.params.id])
+        .then(result => {
+            res.sendStatus(201)
+        }).catch(error => {
+            console.log('error in DELETE query:', error)
+        })
+});
+
+//delete songs request
+router.delete('/delete/song-requests/:id', (req, res) => {
+    pool.query(`DELETE FROM "song_requests" WHERE "id"=$1;`, [req.params.id])
         .then(result => {
             res.sendStatus(201)
         }).catch(error => {
