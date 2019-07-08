@@ -31,6 +31,7 @@ state = {
   handleClickEdit = (songId) => {
     console.log('song id', songId)
     console.log('handleClick Edit Song')
+    this.props.history.push(`/edit-song/${songId}`);
   }
 
   render() {

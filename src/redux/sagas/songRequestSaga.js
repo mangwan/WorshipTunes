@@ -6,7 +6,7 @@ function* postSongRequest(action) {
     try {
         console.log('in post song request saga', action)
         yield axios.post('/client/song-request', action.payload);
-        yield  put({type: 'SET_SONG_REQUESTS', payload: action.payload});
+        yield put({type: 'FETCH_SONG_REQUESTS'});
     } catch (error) {
         console.log('Error with post song request saga', error);
     }
