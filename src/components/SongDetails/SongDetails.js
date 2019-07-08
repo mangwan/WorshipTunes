@@ -3,34 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
 
 class SongDetails extends Component {
   componentDidMount = () => {
     const song_id = this.props.match.params.id
-    axios.get(`/client/song/${song_id}/details`).then(response => {
-      this.props.dispatch({
-        type: 'SET_SONG_DETAILS',
-        payload: response.data,
-      });
-      this.setState(
-        {
-        ...this.props.songDetails,
-        current_key: this.props.songDetails.original_key
-        }
-    )
-    })
-  }
-
-  state = {
-    artist: '',
-    title: '',
-    original_key: '',
-    current_key: '',
-    lyrics: '',
-    tempo: '',
-    bpm: '',
-    ccli: '',
+    this.props.dispatch({
+      type: 'GET_SONG_DETAILS',
+      payload: song_id,
+    });
   }
 
   handleChange = (event) => {
@@ -100,13 +80,8 @@ class SongDetails extends Component {
       regex = new RegExp(` ${number}(?!:A-z)`, 'g')
       new_lyrics = new_lyrics.replace(regex, ` ${new_chord}`)
     })
-    
-    this.setState({
-      artist: this.state.artist,
-      title: this.state.title,
-      current_key: new_key,
-      lyrics: new_lyrics
-    })
+
+    this.props.dispatch({ type: 'SET_LYRICS', payload: new_lyrics })
     console.log('new state', this.state)
   }
   render() {
@@ -116,10 +91,10 @@ class SongDetails extends Component {
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <h2>Chords</h2>
-            <p>Artist: {this.state.artist}</p>
-            <p>Title: {this.state.title}</p>
-            <p>Key: {this.state.original_key}</p>
-            <select value={this.state.current_key} onChange={this.handleChange}>
+            <p>Artist: {this.props.songDetails.artist}</p>
+            <p>Title: {this.props.songDetails.title}</p>
+            <p>Key: {this.props.songDetails.original_key}</p>
+            <select value={this.props.songDetails.current_key} onChange={this.handleChange}>
               <option>Ab</option>
               <option>A</option>
               <option>Bb</option>
@@ -133,14 +108,14 @@ class SongDetails extends Component {
               <option>F#</option>
               <option>G</option>
             </select>
-            <pre>Lyrics: {this.state.lyrics}</pre>
+            <pre>Lyrics: {this.props.currentLyrics}</pre>
           </Grid>
           <Grid item xs={6}>
             <h2>Song Details</h2>
-            <p>Tempo: {this.state.tempo}</p>
-            <p>BPM: {this.state.BPM}</p>
-            <p>Original Key: {this.state.original_key}</p>
-            <p>CCLI#: {this.state.CCLI}</p>
+            <p>Tempo: {this.props.songDetails.tempo}</p>
+            <p>BPM: {this.props.songDetails.BPM}</p>
+            <p>Original Key: {this.props.songDetails.original_key}</p>
+            <p>CCLI#: {this.props.songDetails.CCLI}</p>
           </Grid>
         </Grid>
 
