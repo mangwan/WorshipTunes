@@ -47,14 +47,36 @@ router.delete('/delete/song-requests/:id', (req, res) => {
 //add new song
 router.post('/add-song', (req, res) => {
     pool.query(`INSERT INTO "song" ("title", "artist", "lyrics", "original_key", "tempo", "BPM", "CCLI", "spotify_uri", "album_cover")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`, 
-    [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo, 
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
+        [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo,
         req.body.BPM, req.body.CCLI, req.body.spotifyUri, req.body.albumUrl])
-    .then(response => {
-        res.sendStatus(201)
-    }).catch (error => {
-        console.log('error posting new song', error)
-    })
+        .then(response => {
+            res.sendStatus(201)
+        }).catch(error => {
+            console.log('error posting new song', error)
+        })
+});
+
+//update song
+router.put('/edit-song/:id', (req, res) => {
+    pool.query(`UPDATE "song" SET 
+    "title"=$1,
+"artist"=$2,
+"lyrics"=$3,
+"original_key"=$4,
+"tempo"=$5,
+"BPM"=$6,
+"CCLI"=$7,
+"spotify_uri"=$8,
+"album_cover"=$9
+WHERE "id"=$10`,
+        [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo,
+        req.body.BPM, req.body.CCLI, req.body.spotifyUri, req.body.albumUrl, req.params.id])
+        .then(result => res.send(result.rows[0]))
+        .catch(error => {
+            console.log('error in edit song query', error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

@@ -70,6 +70,7 @@ class AddSong extends Component {
                     <div>
                         <form onSubmit={this.addNewSong}>
                             <h2>Add a Song</h2>
+                            <p>required field*</p>
                             <label>Song Title*</label>
                             <div>
                                 <input

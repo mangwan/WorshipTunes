@@ -51,11 +51,11 @@ class RequestSongPage extends Component {
           <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
         <div>
+          <h2>
+            Request a Song
+              </h2>
           <div>
             <form onSubmit={this.registerUser}>
-              <h2>
-                Request a Song
-              </h2>
               <label>Name</label>
               <div>
                 <input

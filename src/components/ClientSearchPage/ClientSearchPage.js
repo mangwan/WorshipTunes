@@ -28,7 +28,7 @@ class ClientSearchPage extends Component {
 
           </div>
           <div>
-            <h1 className="songlist">Song List</h1>
+            <h2 className="songlist">Song List</h2>
             <SongGrid />
           </div>
           {/* <pre>

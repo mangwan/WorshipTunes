@@ -5,14 +5,6 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 
 class EditSong extends Component {
-    componentDidMount = () => {
-        const song_id = this.props.match.params.id
-        this.props.dispatch({
-            type: 'GET_SONG_DETAILS',
-            payload: song_id,
-        });
-    }
-
     state = {
         songTitle: this.props.songDetails.title,
         artistName: this.props.songDetails.artist,
@@ -24,6 +16,14 @@ class EditSong extends Component {
         spotifyUri: this.props.songDetails.spotify_uri,
         originalKey: this.props.songDetails.original_key,
     };
+
+    componentDidMount = () => {
+        const song_id = this.props.match.params.id
+        this.props.dispatch({
+            type: 'GET_SONG_DETAILS',
+            payload: song_id,
+        });
+    }
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
@@ -58,17 +58,6 @@ class EditSong extends Component {
         } else {
             alert('Please fill out all required fields!');
         }
-        this.setState({
-            songTitle: '',
-            artistName: '',
-            lyrics: '',
-            tempo: '',
-            BPM: '',
-            CCLI: '',
-            albumUrl: '',
-            spotifyUri: '',
-            originalKey: '',
-        });
     }
 
     render() {
@@ -77,9 +66,9 @@ class EditSong extends Component {
                 <header>
                     <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
                 </header>
-          <pre>
-          {JSON.stringify(this.props, null, 2)}
-        </pre>
+                {/* <pre>
+                    {JSON.stringify(this.props, null, 2)}
+                </pre> */}
                 <div>
                     <form onSubmit={this.editSong}>
                         <h2>Edit Song</h2>
@@ -91,7 +80,7 @@ class EditSong extends Component {
                                     <input
                                         type="text"
                                         name="songTitle"
-                                        value={this.state.songTitle}
+                                        value={this.props.songDetails.songTitle}
                                         onChange={() => this.handleInputChangeFor('songTitle')}
                                     />
                                 </div>
