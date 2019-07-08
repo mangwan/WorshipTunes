@@ -22,6 +22,15 @@ const Nav = (props) => (
           <Link className="nav-link" to="/request-song">
             Request Song
           </Link>
+          <Link className="nav-link" to="/manage-songs">
+            Manage Songs
+          </Link>
+          <Link className="nav-link" to="/song-requests">
+            Song Requests
+          </Link>
+          <Link className="nav-link" to="/add-song">
+            Add Song
+          </Link>
           <LogOutButton className="nav-link"/>
         </>
       )}

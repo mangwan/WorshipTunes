@@ -16,6 +16,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 // import AboutPage from '../AboutPage/AboutPage';
 import ClientSearchPage from '../ClientSearchPage/ClientSearchPage';
 import RequestSongPage from '../RequestSongPage/RequestSongPage';
+import ManageSongs from '../ManageSongs/ManageSongs';
+import SongRequests from '../SongRequests/SongRequests';
+import AddSongs from '../AddSongs/AddSongs';
+
+
 
 import './App.css';
 
@@ -55,10 +60,25 @@ class App extends Component {
               path="/request-song"
               component={RequestSongPage}
             />
-            <Route
+            <ProtectedRoute
               exact
               path="/song-details/:id"
               component={SongDetails} />
+
+               {/* Routes for Admin*/}
+              <ProtectedRoute
+              exact
+              path="/manage-songs"
+              component={ManageSongs} />
+              <ProtectedRoute
+              exact
+              path="/song-requests"
+              component={SongRequests} />
+              <ProtectedRoute
+              exact
+              path="/add-song"
+              component={AddSongs} />
+              
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
