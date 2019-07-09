@@ -66,6 +66,7 @@ class App extends Component {
               path="/song-details/:id"
               component={SongDetails} />
 
+              {/* MANG TO DO: Add an if statement to check if user is an admin */}
                {/* Routes for Admin*/}
               <ProtectedRoute
               exact

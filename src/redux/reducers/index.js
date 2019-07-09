@@ -6,6 +6,7 @@ import songs from './songsReducer';
 import songDetails from './songDetailsReducer';
 import songRequests from './songRequestsReducer';
 import currentLyrics from './lyricsReducer';
+import filteredSongs from './filteredSongsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   songDetails,
   songRequests,
   currentLyrics,
+  filteredSongs,
 });
 
 export default rootReducer;

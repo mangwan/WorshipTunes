@@ -9,10 +9,37 @@ import '../ClientSearchPage/ClientSearchPage.css';
 
 // const ClientSearchPage = props => (
 class ClientSearchPage extends Component {
+  state = {
+    search_term: ""
+
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
 
+  handleChange = (event) => {
+    this.setState({
+      search_term: event.target.value
+    })
+  }
+
+  searchSongs = () => {
+    let filtered_songs = []
+    /* push to filtered_songs if title or artis includes the term
+       MANG TO DO: case insensitive */
+    this.props.songs.map(song => {
+      if (song.title.includes(this.state.search_term) ||
+        song.artist.includes(this.state.search_term)) {
+        filtered_songs.push(song)
+      }
+    })
+
+    this.props.dispatch({ type: 'SET_FILTERED_SONGS', payload: filtered_songs })
+    /* MANG STRETCH GOAL: stretch goal is to instead push to 
+       a new page that saves the search in the url */
+    console.log(filtered_songs)
+  }
 
   render() {
     return (
@@ -23,8 +50,8 @@ class ClientSearchPage extends Component {
         <div className="container">
           <div>
             <h2>Search for a Song</h2>
-            <input></input>
-            <button>Search</button>
+            <input onChange={this.handleChange} />
+            <button onClick={this.searchSongs}>Search</button>
 
           </div>
           <div>

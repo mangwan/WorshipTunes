@@ -17,9 +17,8 @@ const styles = {
   },
   title: {
     textAlign: 'center',
-    // color: '#F7882F',
-    fontSize: '22px',
-    marginTop: '80px',
+    // color: '#1DB954',
+    fontSize: '20px',
   },
   button: {
     marginTop: '30px',
@@ -121,7 +120,13 @@ class RequestSongPage extends Component {
                 </Grid>
               </Grid>
               <div>
-                <Button style={styles.button} variant="contained" color="primary" type="submit">Submit</Button>
+                <Button 
+                style={styles.button} 
+                variant="contained" 
+                color="secondary" 
+                type="submit">
+                  Submit
+                  </Button>
               </div>
             </form>
           </Grid>

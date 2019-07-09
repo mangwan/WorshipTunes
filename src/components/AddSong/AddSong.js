@@ -131,44 +131,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                            </Grid>
-                                <Grid item xs={6}>
-                                    <FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                        <InputLabel htmlFor="status">Tempo</InputLabel>
-                                        <Select
-                                            input={<OutlinedInput name="Tempo" id="tempo" />}
-                                            value={this.state.tempo}
-                                            onChange={this.handleInputChangeFor('tempo')}
-                                        >
-                                            <MenuItem value="Slow">Slow</MenuItem>
-                                            <MenuItem value="Medium">Medium</MenuItem>
-                                            <MenuItem value="Fast">Fast</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item xs={6}>
-                                <FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                <InputLabel htmlFor="status">Original Key</InputLabel>
-                                <Select
-                                    input={<OutlinedInput name="originalkey" id="originalkey" />}
-                                    value={this.state.originalKey}
-                                    onChange={this.handleInputChangeFor('originalKey')}
-                                >
-                                    <MenuItem value="Ab">Ab</MenuItem>
-                                    <MenuItem value="A">A</MenuItem>
-                                    <MenuItem value="Bb">Bb</MenuItem>
-                                    <MenuItem value="B">B</MenuItem>
-                                    <MenuItem value="C">C</MenuItem>
-                                    <MenuItem value="Dd">Db</MenuItem>
-                                    <MenuItem value="D">D</MenuItem>
-                                    <MenuItem value="Eb">Eb</MenuItem>
-                                    <MenuItem value="E">E</MenuItem>
-                                    <MenuItem value="F">F</MenuItem>
-                                    <MenuItem value="F#">F#</MenuItem>
-                                    <MenuItem value="G">G</MenuItem>
-                                </Select>
-                                </FormControl>
-                                </Grid>
+                            
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
@@ -210,6 +173,44 @@ class AddSong extends Component {
                                         variant="outlined"
                                     />
                                     </Grid>
+                                    </Grid>
+                                <Grid item xs={6}>
+                                    <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                        <InputLabel htmlFor="status">Tempo</InputLabel>
+                                        <Select
+                                            input={<OutlinedInput name="Tempo" id="tempo" />}
+                                            value={this.state.tempo}
+                                            onChange={this.handleInputChangeFor('tempo')}
+                                        >
+                                            <MenuItem value="Slow">Slow</MenuItem>
+                                            <MenuItem value="Medium">Medium</MenuItem>
+                                            <MenuItem value="Fast">Fast</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6}>
+                                <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                <InputLabel htmlFor="status">Original Key</InputLabel>
+                                <Select
+                                    input={<OutlinedInput name="originalkey" id="originalkey" />}
+                                    value={this.state.originalKey}
+                                    onChange={this.handleInputChangeFor('originalKey')}
+                                >
+                                    <MenuItem value="Ab">Ab</MenuItem>
+                                    <MenuItem value="A">A</MenuItem>
+                                    <MenuItem value="Bb">Bb</MenuItem>
+                                    <MenuItem value="B">B</MenuItem>
+                                    <MenuItem value="C">C</MenuItem>
+                                    <MenuItem value="Dd">Db</MenuItem>
+                                    <MenuItem value="D">D</MenuItem>
+                                    <MenuItem value="Eb">Eb</MenuItem>
+                                    <MenuItem value="E">E</MenuItem>
+                                    <MenuItem value="F">F</MenuItem>
+                                    <MenuItem value="F#">F#</MenuItem>
+                                    <MenuItem value="G">G</MenuItem>
+                                </Select>
+                                </FormControl>
+                                </Grid>
                             <div>
                                 <Button style={styles.button} variant="contained" color="primary" type="submit">Add Song</Button>
                             </div>

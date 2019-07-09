@@ -7,11 +7,21 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
+const styles = {
+  buttonEdit: {
+    fontSize: '10px',
+  },
+  buttonDelete: {
+    fontSize: '10px',
+  },
+};
 
 class ManageSongs extends Component {
-state = {
-  songs: this.props.songs,
-}
+  state = {
+    songs: this.props.songs,
+  }
 
   componentDidMount() {
     this.props.dispatch({ type: 'GET_SONGS' })
@@ -19,12 +29,12 @@ state = {
 
   handleClickDelete = (songId) => {
     console.log('song id', songId)
-    if (window.confirm('Are you sure you want to delete this song?')){
+    if (window.confirm('Are you sure you want to delete this song?')) {
       console.log("You pressed OK!")
-      this.props.dispatch({ 
+      this.props.dispatch({
         type: 'DELETE_SONG',
         payload: songId,
-        })
+      })
     }
   }
 
@@ -33,6 +43,7 @@ state = {
     console.log('handleClick Edit Song')
     this.props.history.push(`/edit-song/${songId}`);
   }
+
 
   render() {
     return (
@@ -45,7 +56,6 @@ state = {
             <h2>Manage Songs</h2>
             <input></input>
             <button>Search</button>
-
           </div>
           <div>
             <Table>
@@ -67,10 +77,32 @@ state = {
                       {song.artist}
                     </TableCell>
                     <TableCell>
-                      <button onClick={() => this.handleClickEdit(song.id)} song={song}>Edit</button>
+                      <Button
+                        style={styles.buttonEdit}
+                        variant="outlined"
+                        color="primary"
+                        type="submit"
+                        onClick={() => this.handleClickEdit(song.id)}
+                        song={song}>Edit
+                      </Button>
                     </TableCell>
                     <TableCell>
-                      <button onClick={() => this.handleClickDelete(song.id)} song={song}>Delete</button>
+                      {/* <Button
+                        style={styles.button}
+                        variant="outlined"
+                        color="secondary"
+                        type="submit"
+                        onClick={() => this.handleClickDelete(song.id)}
+                        song={song}>Delete
+                      </Button> */}
+                      <Button
+                        variant="outlined"
+                        style={styles.buttonDelete}
+                        color="secondary"
+                        onClick={() => this.handleClickDelete(song.id)}
+                        song={song}>
+                        Delete
+                      </Button>
                     </TableCell>
                   </TableRow>)}
               </TableBody>

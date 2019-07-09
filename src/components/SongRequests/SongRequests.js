@@ -7,6 +7,21 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+
+const styles = {
+  buttonEdit: {
+    fontSize: '10px',
+  },
+  buttonDelete: {
+    fontSize: '10px',
+  },
+  title: {
+    textAlign: 'center',
+    // color: '#1DB954',
+    fontSize: '20px',
+  },
+};
 
 class SongRequests extends Component {
   state = {
@@ -35,7 +50,7 @@ class SongRequests extends Component {
           <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
         <div className="container">
-          <div>
+          <div style={styles.title}>
             <h2>Song Requests</h2>
           </div>
           <div>
@@ -69,7 +84,14 @@ class SongRequests extends Component {
                       {request.artist_name}
                     </TableCell>
                     <TableCell>
-                      <button onClick={() => this.handleClickDelete(request.id)} request={request}>Delete</button>                      </TableCell>
+                      <Button 
+                      variant="outlined"
+                      style={styles.buttonDelete}
+                      color="secondary"
+                      onClick={() => this.handleClickDelete(request.id)} 
+                      request={request}>Delete
+                      </Button>                     
+                       </TableCell>
                   </TableRow>)}
               </TableBody>
             </Table>

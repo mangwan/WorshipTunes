@@ -4,6 +4,7 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* fetchSongs() {
     const songResponse = yield axios.get('/client/song');
     yield put({type: 'SET_SONGS', payload: songResponse.data})
+    yield put({type: 'SET_FILTERED_SONGS', payload: songResponse.data})
 }
 
 
