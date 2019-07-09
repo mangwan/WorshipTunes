@@ -5,6 +5,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 const Nav = (props) => (
+  <div>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"></link>
   <div className="nav">
     <Link to="/home">
       <h2 className="nav-title">Prime Solo Project</h2>
@@ -14,7 +17,10 @@ const Nav = (props) => (
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Search' : 'Login / Register'}
+        {props.user.id ? 
+          'Search' 
+          : 
+          'Login / Register'}
       </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
@@ -39,6 +45,7 @@ const Nav = (props) => (
         About
       </Link> */}
     </div>
+  </div>
   </div>
 );
 
