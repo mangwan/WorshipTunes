@@ -3,17 +3,28 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import Typography from '@material-ui/core/Typography';
+
+import Button from '@material-ui/core/Button';
+
+const styles = {
+  toolbarTitle: {
+    flexGrow: 1,
+  },
+};
 
 const Nav = (props) => (
   <div>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
   rel="stylesheet"></link>
   <div className="nav">
-    <Link to="/home">
+  <Button><Link to="/home">
+  <Typography variant="h6" color="inherit" noWrap styles={styles.toolbarTitle}>
       <h2 className="nav-title">Prime Solo Project</h2>
-    </Link>
+      </Typography>
+    </Link></Button>
     <div className="nav-right">
-      <Link className="nav-link" to="/home">
+    <Button><Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
@@ -21,23 +32,39 @@ const Nav = (props) => (
           'Search' 
           : 
           'Login / Register'}
-      </Link>
+      </Link></Button>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
-          <Link className="nav-link" to="/request-song">
+          <Button><Link className="nav-link" to="/request-song">
             Request Song
-          </Link>
-          <Link className="nav-link" to="/manage-songs">
+          </Link></Button>
+          <Button><Link className="nav-link" to="/manage-songs">
             Manage Songs
-          </Link>
-          <Link className="nav-link" to="/song-requests">
+          </Link></Button>
+          <Button><Link className="nav-link" to="/song-requests">
             Song Requests
-          </Link>
-          <Link className="nav-link" to="/add-song">
+          </Link></Button>
+          <Button><Link className="nav-link" to="/add-song">
             Add Song
-          </Link>
-          <LogOutButton className="nav-link"/>
+          </Link></Button>
+         {/* <LogOutButton className="nav-link"/> */}
+         
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"></link>
+    <Button
+      // This button shows up in multiple locations and is styled differently
+      // because it's styled differently depending on where it is used, the className
+      // is passed to it from it's parents through React props
+      className={props.className}
+      onClick={() => props.dispatch({ type: 'LOGOUT' })}
+    ><Link className="nav-link" > 
+      <i class="material-icons">account_circle</i>
+      <span> </span>
+      {props.user.username}
+      <span> </span>
+      <i class="material-icons">expand_more</i>
+    </Link></Button>
         </>
       )}
       {/* Always show this link since the about page is not protected */}
