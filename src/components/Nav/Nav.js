@@ -20,7 +20,7 @@ const Nav = (props) => (
   <div className="nav">
   <Button><Link to="/home">
   <Typography variant="h6" color="inherit" noWrap styles={styles.toolbarTitle}>
-      <h2 className="nav-title">Prime Solo Project</h2>
+      <h2 className="nav-title">WorshipTunes</h2>
       </Typography>
     </Link></Button>
     <div className="nav-right">
