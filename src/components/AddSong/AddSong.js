@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import swal from 'sweetalert';
 
 const styles = {
     container: {
@@ -82,9 +83,14 @@ class AddSong extends Component {
                 spotifyUri: '',
                 originalKey: '',
             });
-            alert('New song added to the database!');
+            swal({
+                title: "Song Added!",
+                text: "",
+                icon: "success",
+                button: "Ok",
+              });
         } else {
-            alert('Please fill out all required fields!');
+            swal('Please fill out all required fields!');
         }
     }
 
