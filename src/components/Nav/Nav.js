@@ -34,11 +34,11 @@ const Nav = (props) => (
           'Login / Register'}
       </Link></Button>
       {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-          <Button><Link className="nav-link" to="/request-song">
+      {props.user.id && (<Button><Link className="nav-link" to="/request-song">
             Request Song
-          </Link></Button>
+          </Link></Button>) }
+          {props.user.id && props.user.is_admin && (
+        <>
           <Button><Link className="nav-link" to="/manage-songs">
             Manage Songs
           </Link></Button>
@@ -49,9 +49,12 @@ const Nav = (props) => (
             Add Song
           </Link></Button>
          {/* <LogOutButton className="nav-link"/> */}
-         
-         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"></link>
+         </>
+      )}
+      {props.user.id && (
+        <>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"></link>
     <Button
       // This button shows up in multiple locations and is styled differently
       // because it's styled differently depending on where it is used, the className

@@ -69,8 +69,9 @@ class App extends Component {
               {/* MANG TO DO: Add an if statement to check if user is an admin */}
                {/* Routes for Admin*/}
                
-              {this.props.user.is_admin ?
-               <><ProtectedRoute
+              {this.props.user.is_admin && (
+               <>
+               <ProtectedRoute
                 exact
                 path="/manage-songs"
                 component={ManageSongs} />
@@ -85,10 +86,10 @@ class App extends Component {
                 <ProtectedRoute
                 exact
                 path="/edit-song/:id"
-                component={EditSong} /></>
-                :
-                <></>
-              }}
+                component={EditSong} />
+                </>
+              )
+              }
               
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
