@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import swal from 'sweetalert';
 
 const styles = {
   form: {
@@ -33,15 +34,39 @@ class ManageSongs extends Component {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
 
+  // handleClickDelete = (songId) => {
+  //   console.log('song id', songId)
+  //   if (window.confirm('Are you sure you want to delete this song?')) {
+  //     console.log("You pressed OK!")
+  //     this.props.dispatch({
+  //       type: 'DELETE_SONG',
+  //       payload: songId,
+  //     })
+  //   }
+  // }
+
   handleClickDelete = (songId) => {
-    console.log('song id', songId)
-    if (window.confirm('Are you sure you want to delete this song?')) {
-      console.log("You pressed OK!")
-      this.props.dispatch({
-        type: 'DELETE_SONG',
-        payload: songId,
+    (swal({
+      title: "Confirm Delete",
+      text: "Are you sure you want to delete this song?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          this.props.dispatch({
+            type: 'DELETE_SONG',
+            payload: songId,
+          })
+          swal("Song has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Cancel!");
+        }
       })
-    }
+    )
   }
 
   handleClickEdit = (songId) => {
