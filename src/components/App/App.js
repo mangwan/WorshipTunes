@@ -68,22 +68,27 @@ class App extends Component {
 
               {/* MANG TO DO: Add an if statement to check if user is an admin */}
                {/* Routes for Admin*/}
-              <ProtectedRoute
-              exact
-              path="/manage-songs"
-              component={ManageSongs} />
-              <ProtectedRoute
-              exact
-              path="/song-requests"
-              component={SongRequests} />
-              <ProtectedRoute
-              exact
-              path="/add-song"
-              component={AddSong} />
-              <ProtectedRoute
-              exact
-              path="/edit-song/:id"
-              component={EditSong} />
+               
+              {this.props.user.is_admin ?
+               <><ProtectedRoute
+                exact
+                path="/manage-songs"
+                component={ManageSongs} />
+                <ProtectedRoute
+                exact
+                path="/song-requests"
+                component={SongRequests} />
+                <ProtectedRoute
+                exact
+                path="/add-song"
+                component={AddSong} />
+                <ProtectedRoute
+                exact
+                path="/edit-song/:id"
+                component={EditSong} /></>
+                :
+                <></>
+              }}
               
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
@@ -95,4 +100,6 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(App);
