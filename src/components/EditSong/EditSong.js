@@ -64,6 +64,7 @@ class EditSong extends Component {
                     spotifyUri: this.state.spotify_uri,
                     originalKey: this.state.original_key,
                 },
+                id: this.props.match.params.id,
             });
             alert('Song has been updated!');
             /* MANG TO DO: dispatch to a saga that does a put command. 

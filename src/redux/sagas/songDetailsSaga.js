@@ -10,8 +10,8 @@ function* fetchSongDetails(action) {
 
 function* editSongDetails(action) {
     console.log('in edit song details saga', action)
-    // const editSong = yield axios.get(`/client/song/${action.payload}/details`)
-    // yield put({type: 'SET_SONG_DETAILS', payload: songResponse.data});
+    const updateSong = yield axios.put(`/admin/edit-song/${action.id}`, action.payload)
+    yield put({type: 'SET_SONG_DETAILS', payload: updateSong.data});
     // yield put({ type: 'SET_LYRICS', payload: songResponse.data.lyrics })
     // console.log('song response data', songResponse.data)
 }

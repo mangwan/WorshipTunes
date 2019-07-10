@@ -28,8 +28,7 @@ class ClientSearchPage extends Component {
     /* push to filtered_songs if title or artist includes the term
        MANG TO DO: case insensitive */
     this.props.songs.map(song => {
-      if (song.title.includes(this.state.search_term) ||
-        song.artist.includes(this.state.search_term)) {
+      if (this.caseInsensitiveInclude(song)) {
         filtered_songs.push(song)
       }
     })
@@ -38,6 +37,13 @@ class ClientSearchPage extends Component {
     /* MANG STRETCH GOAL: stretch goal is to instead push to 
        a new page that saves the search in the url */
     console.log(filtered_songs)
+  }
+
+  caseInsensitiveInclude = (song) => {
+    return song.title.toLowerCase().includes(this.state.search_term) || 
+    song.title.includes(this.state.search_term) || 
+    song.artist.toLowerCase().includes(this.state.search_term) ||
+    song.artist.includes(this.state.search_term)
   }
 
   render() {
