@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import swal from 'sweetalert';
 
 
 const styles = {
@@ -13,7 +15,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     backgroundColor: 'white',
-    width: '80%',
+    width: '100%',
   },
   title: {
     textAlign: 'center',
@@ -32,11 +34,30 @@ class RequestSongPage extends Component {
     email: '',
     song_title: '',
     artist_name: '',
+    date: '',
   };
+
+  componentDidMount() {
+    this.getCurrentDate();
+}
+
+//set january to 0
+getCurrentDate = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    let yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    this.setState({
+        ...this.state, 
+        date: today,
+    })
+    console.log('current date', this.state)
+}
 
   submitRequest = (event) => {
     event.preventDefault();
-    if (this.state.name && this.state.email && this.state.song_title && this.state.artist_name) {
+    if (this.state.name && this.state.email && this.state.song_title && this.state.artist_name && this.state.date) {
       this.props.dispatch({
         type: 'POST_SONG_REQUEST',
         payload: {
@@ -44,6 +65,7 @@ class RequestSongPage extends Component {
           email: this.state.email,
           song_title: this.state.song_title,
           artist_name: this.state.artist_name,
+          date: this.state.date,
         },
       });
       this.setState({
@@ -51,10 +73,16 @@ class RequestSongPage extends Component {
         email: '',
         song_title: '',
         artist_name: '',
+        date: '',
       });
-      alert('Song request sent!');
+      swal({
+        title: "Request Sent!",
+        text: "",
+        icon: "success",
+        button: "Ok",
+      });
     } else {
-      alert('Please fill out all fields!');
+      swal('Please fill out all fields!');
     }
   }
 
@@ -65,12 +93,12 @@ class RequestSongPage extends Component {
   }
   render() {
     return (
-      <div>
+      <Container component="main" maxWidth="md">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={2}>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <form style={styles.container} onSubmit={this.submitRequest}>
+            <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                    <div style={styles.title}>
@@ -79,6 +107,15 @@ class RequestSongPage extends Component {
                   <h4>Looking for a song not in the database? Submit a song request here.</h4>
                 </Grid>
                 <Grid item xs={12}>
+                <TextField
+                                    id="date"
+                                    type="date"
+                                    margin="normal"
+                                    value={this.state.date}
+                                    onChange={this.handleInputChangeFor('date')}
+                                    fullWidth
+                                    variant="outlined"
+                                />
                   <TextField
                     label="Name"
                     id="name"
@@ -133,7 +170,7 @@ class RequestSongPage extends Component {
           <Grid item xs={12} sm={2}>
           </Grid>
         </Grid >
-      </div >
+      </Container>
     );
   }
 }

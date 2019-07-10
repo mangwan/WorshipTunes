@@ -5,22 +5,8 @@ import './LoginPage.css';
 //Material UI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-
-const styles = {
-  title: {
-    margin: "150px 0px 0px 0px",
-    textAlign: 'center',
-    fontSize: '18px',
-  },
-  button: {
-    alignContent: 'center',
-    margin: '10px',
-  },
-};
-
+import Link from '@material-ui/core/Link';
 
 class LoginPage extends Component {
   state = {
@@ -42,7 +28,7 @@ class LoginPage extends Component {
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
-  } // end login
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -54,112 +40,75 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <Container component="main" maxWidth="xs" style={styles.main}>
-        <div>
-          {this.props.errors.loginMessage && (
-            <h2
-              className="alert"
-              role="alert"
-            >
-              {this.props.errors.loginMessage}
-            </h2>
-          )}
-          <form onSubmit={this.login} style={styles.form} noValidate>
-          <div style={styles.title}>
+      <Container component="main" maxWidth="xs">
+        {this.props.errors.loginMessage && (
+          <h2
+            className="alert"
+            role="alert"
+          >
+            {this.props.errors.loginMessage}
+          </h2>
+        )}
+        <form onSubmit={this.login} noValidate>
+          <div>
             <h1>Login</h1>
-</div>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
+          </div>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            value={this.state.username}
+            onChange={this.handleInputChangeFor('username')}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="Password"
+            name="password"
+            autoComplete="password"
+            autoFocus
+            value={this.state.password}
+            onChange={this.handleInputChangeFor('password')}
+          />
 
-            {/* <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div> */}
-
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              label="Password"
-              name="password"
-              autoComplete="password"
-              autoFocus
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-
-            {/* <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div> */}      
-            <Grid container spacing={1}>
-              <Grid item xs={6} sm={3}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="outlined"
-                  styles={styles.submit}
-                  value="Log In"
-                >
-                  Sign In
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            // className={classes.root}                  
+            value="Log In"
+          >
+            Sign In
           </Button>
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                {/* <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-          </div> */}
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="outlined"
-                  className="link-button"
-                  onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
-                >
-                  Register
-          </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
+        </form>
+        <center>
+          <Link
+            component="button"
+            variant="body2"
+            // type="submit"
+            fullWidth
+            variant="outlined"
+            className="link"
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+          >
+            {"Don't have an account? Sign Up"}
+          </Link>
+        </center>
       </Container>
     );
   }
 }
 
 // Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,

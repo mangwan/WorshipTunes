@@ -8,8 +8,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
+  form: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
   buttonEdit: {
     fontSize: '10px',
   },
@@ -65,10 +71,10 @@ class ManageSongs extends Component {
   }
 
   caseInsensitiveInclude = (song) => {
-    return song.title.toLowerCase().includes(this.state.search_term) || 
-    song.title.includes(this.state.search_term) || 
-    song.artist.toLowerCase().includes(this.state.search_term) ||
-    song.artist.includes(this.state.search_term)
+    return song.title.toLowerCase().includes(this.state.search_term) ||
+      song.title.includes(this.state.search_term) ||
+      song.artist.toLowerCase().includes(this.state.search_term) ||
+      song.artist.includes(this.state.search_term)
   }
 
   render() {
@@ -80,8 +86,30 @@ class ManageSongs extends Component {
         <div className="container">
           <div>
             <h2>Manage Songs</h2>
-            <input onChange={this.handleChange}></input>
-            <button onClick={this.searchSongs}>Search</button>
+            <div>
+              <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
+
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                      rel="stylesheet"></link>
+                    <i class="material-icons">search</i>
+                    <span></span>
+                  </Grid>
+                  <TextField
+                    id="search"
+                    type="search"
+                    label="Search for a song or artist"
+                    onChange={this.handleChange}
+                    margin="normal"
+                    style={styles.textField}
+                  />
+
+                  <Button>Search</Button>
+                </Grid>
+
+              </form>
+            </div>
           </div>
           <div>
             <Table>
