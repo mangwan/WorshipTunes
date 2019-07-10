@@ -70,8 +70,7 @@ class SongRequests extends Component {
           <div>
             <Table>
               <TableHead>
-                <TableRow>
-                  <TableCell>Date</TableCell>
+                <TableRow>           
                   <TableCell>Name</TableCell>
                   <TableCell>Email</TableCell>
                   <TableCell>Song Title</TableCell>
@@ -82,9 +81,6 @@ class SongRequests extends Component {
               <TableBody>
                 {this.props.songRequests.map(request =>
                   <TableRow key={request.id}>
-                    <TableCell>
-                      Date
-                      </TableCell>
                     <TableCell>
                       {request.name}
                     </TableCell>

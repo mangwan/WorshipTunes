@@ -34,26 +34,8 @@ class RequestSongPage extends Component {
     email: '',
     song_title: '',
     artist_name: '',
-    date: '',
   };
 
-  componentDidMount() {
-    this.getCurrentDate();
-}
-
-//set january to 0
-getCurrentDate = () => {
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    let yyyy = today.getFullYear();
-    today = yyyy + '-' + mm + '-' + dd;
-    this.setState({
-        ...this.state, 
-        date: today,
-    })
-    console.log('current date', this.state)
-}
 
   submitRequest = (event) => {
     event.preventDefault();
@@ -64,8 +46,6 @@ getCurrentDate = () => {
           name: this.state.name,
           email: this.state.email,
           song_title: this.state.song_title,
-          artist_name: this.state.artist_name,
-          date: this.state.date,
         },
       });
       this.setState({
@@ -107,15 +87,6 @@ getCurrentDate = () => {
                   <h4>Looking for a song not in the database? Submit a song request here.</h4>
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
-                                    id="date"
-                                    type="date"
-                                    margin="normal"
-                                    value={this.state.date}
-                                    onChange={this.handleInputChangeFor('date')}
-                                    fullWidth
-                                    variant="outlined"
-                                />
                   <TextField
                     label="Name"
                     id="name"
