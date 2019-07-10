@@ -11,7 +11,6 @@ import '../ClientSearchPage/ClientSearchPage.css';
 class ClientSearchPage extends Component {
   state = {
     search_term: ""
-
   }
 
   componentDidMount() {
@@ -26,7 +25,7 @@ class ClientSearchPage extends Component {
 
   searchSongs = () => {
     let filtered_songs = []
-    /* push to filtered_songs if title or artis includes the term
+    /* push to filtered_songs if title or artist includes the term
        MANG TO DO: case insensitive */
     this.props.songs.map(song => {
       if (song.title.includes(this.state.search_term) ||
@@ -67,9 +66,6 @@ class ClientSearchPage extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = reduxState => reduxState;
 
 

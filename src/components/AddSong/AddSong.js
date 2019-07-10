@@ -91,18 +91,13 @@ class AddSong extends Component {
     render() {
         return (
             <div>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={2}>
-                    </Grid>
-                    <Grid item xs={12} sm={8}>
+  <Grid container component="main" >
                         <form style={styles.container} onSubmit={this.addNewSong}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={12}>
+         
                                     <div style={styles.title}>
                                         <h2>Add a Song</h2>
                                     </div>
-                                </Grid>
-                                <Grid item xs={12}>
+                      
                                     <TextField
                                         label="Song Title"
                                         id="songTitle"
@@ -111,8 +106,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                </Grid>
-                                <Grid item xs={12}>
+                        
                                     <TextField
                                         label="Artist Name"
                                         id="artistName"
@@ -121,19 +115,18 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                </Grid>
-                                <Grid item xs={12}>
+                          
                                     <TextField
                                         label="Lyrics"
                                         id="lyrics"
+                                        multiline
+                                        rows="10"
                                         value={this.state.lyrics}
                                         onChange={this.handleInputChangeFor('lyrics')}
                                         fullWidth
                                         variant="outlined"
                                     />
-                            
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
+           
                                     <TextField
                                         label="BPM"
                                         id="BPM"
@@ -142,8 +135,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
+        
                                     <TextField
                                         label="CCLI#"
                                         id="CCLI"
@@ -152,8 +144,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                </Grid>
-                                <Grid item xs={12}>
+             
                                     <TextField
                                         label="Album URL"
                                         id="albumUrl"
@@ -162,8 +153,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                </Grid>
-                                <Grid item xs={12}>
+                          
                                     <TextField
                                         label="Spotify URI"
                                         id="spotifyUri"
@@ -172,9 +162,7 @@ class AddSong extends Component {
                                         fullWidth
                                         variant="outlined"
                                     />
-                                    </Grid>
-                                    </Grid>
-                                <Grid item xs={6}>
+                                
                                     <FormControl style={styles.dropdown} fullWidth variant="outlined">
                                         <InputLabel htmlFor="status">Tempo</InputLabel>
                                         <Select
@@ -187,8 +175,7 @@ class AddSong extends Component {
                                             <MenuItem value="Fast">Fast</MenuItem>
                                         </Select>
                                     </FormControl>
-                                </Grid>
-                                <Grid item xs={6}>
+                                
                                 <FormControl style={styles.dropdown} fullWidth variant="outlined">
                                 <InputLabel htmlFor="status">Original Key</InputLabel>
                                 <Select
@@ -210,15 +197,12 @@ class AddSong extends Component {
                                     <MenuItem value="G">G</MenuItem>
                                 </Select>
                                 </FormControl>
-                                </Grid>
+                              
                             <div>
                                 <Button style={styles.button} variant="contained" color="primary" type="submit">Add Song</Button>
                             </div>
                         </form>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                    </Grid>
-                </Grid>
+                        </Grid>
             </div >
         );
     }

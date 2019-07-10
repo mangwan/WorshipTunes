@@ -4,6 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 //material UI
 import Grid from '@material-ui/core/Grid';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 class SongDetails extends Component {
   componentDidMount = () => {
@@ -88,7 +91,10 @@ class SongDetails extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.props.history.push('/')}>Return to Search</button>
+         <Breadcrumbs separator="›" aria-label="Breadcrumb">
+        <Link color="inherit" onClick={() => this.props.history.push('/')}>Search</Link>
+        <Typography color="textPrimary">Song Details</Typography>
+        </Breadcrumbs>
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <h2>Chords</h2>

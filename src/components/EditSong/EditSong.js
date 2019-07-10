@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 //material UI
 import Grid from '@material-ui/core/Grid';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 class EditSong extends Component {
     state = {
-        song: this.props.songDetails
+        title: "",
+        artist: "",
+        lyrics: "",
+        tempo: "",
+        BPM: "",
+        CCLI: "",
+        album_cover: "",
+        spotify_uri: "",
+        original_key: "",
     }
 
     componentDidMount = () => {
-        const song_id = this.props.match.params.id
-        this.props.dispatch({
-            type: 'GET_SONG_DETAILS',
-            payload: song_id,
+        axios.get(`/client/song/${this.props.match.params.id}/details`).then(response => {
+            this.setState({
+                title: response.data.title,
+                artist: response.data.artist,
+                lyrics: response.data.lyrics,
+                tempo: response.data.tempo,
+                BPM: response.data.BPM,
+                CCLI: response.data.CCLI,
+                album_cover: response.data.album_cover,
+                spotify_uri: response.data.spotify_uri,
+                original_key: response.data.original_key,
+            })
         });
-    }
-
-    // triggers when props is updated. if props are different from state, update state
-    componentWillReceiveProps(nextProps) {
-        if (this.props.song != nextProps.songDetails) {
-          this.setState({song: nextProps.songDetails});
-        }
     }
 
     handleInputChangeFor = propertyName => (event) => {
@@ -32,24 +45,24 @@ class EditSong extends Component {
 
     editSong = (event) => {
         event.preventDefault();
-        if (this.state.song.title &&
-            this.state.song.artist &&
-            this.state.song.lyrics &&
-            this.state.song.tempo &&
+        if (this.state.title &&
+            this.state.artist &&
+            this.state.lyrics &&
+            this.state.tempo &&
             //need to add if statement to check if BPM and CCLI are numbers
-            this.state.song.original_key) {
+            this.state.original_key) {
             this.props.dispatch({
                 type: 'EDIT_SONG_DETAILS',
                 payload: {
-                    songTitle: this.state.song.title,
-                    artistName: this.state.song.artist,
-                    lyrics: this.state.song.lyrics,
-                    tempo: this.state.song.tempo,
-                    BPM: this.state.song.BPM,
-                    CCLI: this.state.song.CCLI,
-                    albumUrl: this.state.song.album_cover,
-                    spotifyUri: this.state.song.spotify_uri,
-                    originalKey: this.state.song.original_key,
+                    songTitle: this.state.title,
+                    artistName: this.state.artist,
+                    lyrics: this.state.lyrics,
+                    tempo: this.state.tempo,
+                    BPM: this.state.BPM,
+                    CCLI: this.state.CCLI,
+                    albumUrl: this.state.album_cover,
+                    spotifyUri: this.state.spotify_uri,
+                    originalKey: this.state.original_key,
                 },
             });
             alert('Song has been updated!');
@@ -71,6 +84,10 @@ class EditSong extends Component {
                     {JSON.stringify(this.props, null, 2)}
                 </pre> */}
                 <div>
+                <Breadcrumbs separator="›" aria-label="Breadcrumb">
+        <Link color="inherit" onClick={() => this.props.history.push('/manage-songs')}>Manage Songs</Link>
+        <Typography color="textPrimary">Edit Song</Typography>
+        </Breadcrumbs>
                     <form onSubmit={this.editSong}>
                         <h2>Edit Song</h2>
                         <Grid container spacing={2}>
@@ -80,7 +97,7 @@ class EditSong extends Component {
                                     <input
                                         type="text"
                                         name="songTitle"
-                                        value={this.state.song.title}
+                                        value={this.state.title}
                                         onChange={this.handleInputChangeFor('title')}
                                     />
                                 </div>
@@ -91,7 +108,7 @@ class EditSong extends Component {
                                     <input
                                         type="text"
                                         name="artistName"
-                                        value={this.state.song.artist}
+                                        value={this.state.artist}
                                         onChange={this.handleInputChangeFor('artist')}
                                     />
                                 </div>
@@ -103,7 +120,7 @@ class EditSong extends Component {
                                         rows="30"
                                         cols="20"
                                         name="lyrics"
-                                        value={this.state.song.lyrics}
+                                        value={this.state.lyrics}
                                         onChange={this.handleInputChangeFor('lyrics')}
                                     />
                                 </div>
@@ -115,7 +132,7 @@ class EditSong extends Component {
                                 <div>
                                     <select
                                         name="tempo"
-                                        value={this.state.song.tempo}
+                                        value={this.state.tempo}
                                         onChange={this.handleInputChangeFor('tempo')}
                                     >
                                         <option value="slow">Slow</option>
@@ -130,7 +147,7 @@ class EditSong extends Component {
                                     <input
                                         type="number"
                                         name="BPM"
-                                        value={this.state.song.BPM}
+                                        value={this.state.BPM}
                                         onChange={this.handleInputChangeFor('BPM')}
                                     />
                                 </div>
@@ -141,7 +158,7 @@ class EditSong extends Component {
                                     <input
                                         type="number"
                                         name="CCLI"
-                                        value={this.state.song.CCLI}
+                                        value={this.state.CCLI}
                                         onChange={this.handleInputChangeFor('CCLI')}
                                     />
                                 </div>
@@ -152,7 +169,7 @@ class EditSong extends Component {
                                     <input
                                         type="text"
                                         name="albumUrl"
-                                        value={this.state.song.album_cover}
+                                        value={this.state.album_cover}
                                         onChange={this.handleInputChangeFor('album_cover')}
                                     />
                                 </div>
@@ -163,7 +180,7 @@ class EditSong extends Component {
                                     <input
                                         type="text"
                                         name="spotifyUri"
-                                        value={this.state.song.spotify_uri}
+                                        value={this.state.spotify_uri}
                                         onChange={this.handleInputChangeFor('spotify_uri')}
                                     />
                                 </div>
@@ -173,7 +190,7 @@ class EditSong extends Component {
                                 <div>
                                     <select
                                         name="originalKey"
-                                        value={this.state.song.original_key}
+                                        value={this.state.original_key}
                                         onChange={this.handleInputChangeFor('original_key')}
                                     >
                                         <option>Ab</option>

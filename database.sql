@@ -12,25 +12,28 @@ CREATE TABLE "user" (
 	"is_admin" boolean 
 );
 
-CREATE TABLE "song" (
-    "id" SERIAL PRIMARY KEY,
-    "title" VARCHAR (50) NOT NULL,
-    "artist" VARCHAR (50) NOT NULL,
-    "lyric" TEXT NOT NULL,
-    "original_key" VARCHAR (2) NOT NULL,
-    "tempo" VARCHAR (10) NOT NULL,
-    "BPM" INTEGER,
-    "CCLI#" INTEGER,
-    "spotify_uri" VARCHAR (1000),
-    "album_cover" VARCHAR (250)
+CREATE TABLE song (
+    id SERIAL PRIMARY KEY,
+    title character varying(50) NOT NULL,
+    artist character varying(50) NOT NULL,
+    lyrics text NOT NULL,
+    original_key character varying(2) NOT NULL,
+    tempo character varying(10) NOT NULL,
+    "BPM" integer,
+    "CCLI" integer,
+    spotify_uri character varying(1000),
+    album_cover character varying(500)
 );
 
+-- Indices -------------------------------------------------------
 
-CREATE TABLE "song_requests" (
-    "id" SERIAL PRIMARY KEY,
-    "date" date,
-    "name" VARCHAR (50),
-    "email" VARCHAR (50),
-    "title" VARCHAR (50),
-    "artist_name" VARCHAR (50)
+CREATE UNIQUE INDEX song_pkey ON song(id int4_ops);
+
+CREATE TABLE song_requests (
+    id SERIAL PRIMARY KEY,
+    date date,
+    name character varying(50),
+    email character varying(50),
+    song_title character varying(50),
+    artist_name character varying(50)
 );

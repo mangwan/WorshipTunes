@@ -9,33 +9,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
-const styles = makeStyles(theme => ({
-  // '@global': {
-  //   body: {
-  //     backgroundColor: theme.palette.common.white,
-  //   },
-  // },
+const styles = {
+  title: {
+    margin: "150px 0px 0px 0px",
+    textAlign: 'center',
+    fontSize: '18px',
+  },
   button: {
     alignContent: 'center',
+    margin: '10px',
   },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  // form: {
-  //   width: '100%',
-  //   marginTop: theme.spacing(1),
-  // },
-  // submit: {
-  //   margin: theme.spacing(3, 0, 2),
-  // },
-}));
+};
 
 
 class LoginPage extends Component {
@@ -70,7 +54,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={styles.main}>
         <div>
           {this.props.errors.loginMessage && (
             <h2
@@ -80,9 +64,10 @@ class LoginPage extends Component {
               {this.props.errors.loginMessage}
             </h2>
           )}
-          <form onSubmit={this.login} styles={styles.form} noValidate>
+          <form onSubmit={this.login} style={styles.form} noValidate>
+          <div style={styles.title}>
             <h1>Login</h1>
-
+</div>
             <TextField
               variant="outlined"
               margin="normal"
@@ -133,12 +118,11 @@ class LoginPage extends Component {
                 onChange={this.handleInputChangeFor('password')}
               />
             </label>
-          </div> */}
-            <Grid container>
-              <Grid item>
+          </div> */}      
+            <Grid container spacing={1}>
+              <Grid item xs={6} sm={3}>
                 <Button
                   type="submit"
-                  styles={styles.button}
                   fullWidth
                   variant="outlined"
                   styles={styles.submit}
@@ -147,7 +131,7 @@ class LoginPage extends Component {
                   Sign In
           </Button>
               </Grid>
-              <Grid item styles={styles.button}>
+              <Grid item xs={6} sm={3}>
                 {/* <div>
             <input
               className="log-in"
