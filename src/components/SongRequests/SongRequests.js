@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 const styles = {
   buttonEdit: {
@@ -33,14 +34,27 @@ class SongRequests extends Component {
   }
 
   handleClickDelete = (requestId) => {
-    console.log('in delete song request', requestId)
-    if (window.confirm('Are you sure you want to delete this song request?')) {
-      console.log("You pressed OK!")
-      this.props.dispatch({
-        type: 'DELETE_SONG_REQUEST',
-        payload: requestId,
+    (swal({
+      title: "Confirm Delete",
+      text: "Are you sure you want to delete this song request?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          this.props.dispatch({
+            type: 'DELETE_SONG_REQUEST',
+            payload: requestId,
+          })
+          swal("Song request has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Cancel!");
+        }
       })
-    }
+    )
   }
 
   render() {
@@ -84,14 +98,14 @@ class SongRequests extends Component {
                       {request.artist_name}
                     </TableCell>
                     <TableCell>
-                      <Button 
-                      variant="outlined"
-                      style={styles.buttonDelete}
-                      color="secondary"
-                      onClick={() => this.handleClickDelete(request.id)} 
-                      request={request}>Delete
-                      </Button>                     
-                       </TableCell>
+                      <Button
+                        variant="outlined"
+                        style={styles.buttonDelete}
+                        color="secondary"
+                        onClick={() => this.handleClickDelete(request.id)}
+                        request={request}>Delete
+                      </Button>
+                    </TableCell>
                   </TableRow>)}
               </TableBody>
             </Table>

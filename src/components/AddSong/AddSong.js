@@ -22,7 +22,7 @@ const styles = {
         textAlign: 'center',
         // color: '#F7882F',
         fontSize: '22px',
-        marginTop: '80px',
+        marginTop: '50px',
     },
     button: {
         marginTop: '30px',

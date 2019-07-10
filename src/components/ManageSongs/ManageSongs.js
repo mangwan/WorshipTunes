@@ -34,17 +34,6 @@ class ManageSongs extends Component {
     this.props.dispatch({ type: 'GET_SONGS' })
   }
 
-  // handleClickDelete = (songId) => {
-  //   console.log('song id', songId)
-  //   if (window.confirm('Are you sure you want to delete this song?')) {
-  //     console.log("You pressed OK!")
-  //     this.props.dispatch({
-  //       type: 'DELETE_SONG',
-  //       payload: songId,
-  //     })
-  //   }
-  // }
-
   handleClickDelete = (songId) => {
     (swal({
       title: "Confirm Delete",
