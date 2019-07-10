@@ -20,7 +20,7 @@ const styles = {
 
 class ManageSongs extends Component {
   state = {
-    songs: this.props.songs,
+    search_term: ""
   }
 
   componentDidMount() {
@@ -44,6 +44,32 @@ class ManageSongs extends Component {
     this.props.history.push(`/edit-song/${songId}`);
   }
 
+  handleChange = (event) => {
+    this.setState({
+      search_term: event.target.value
+    })
+  }
+
+  searchSongs = () => {
+    let filtered_songs = []
+    this.props.songs.map(song => {
+      if (this.caseInsensitiveInclude(song)) {
+        filtered_songs.push(song)
+      }
+    })
+
+    this.props.dispatch({ type: 'SET_FILTERED_SONGS', payload: filtered_songs })
+    /* MANG STRETCH GOAL: stretch goal is to instead push to 
+       a new page that saves the search in the url */
+    console.log(filtered_songs)
+  }
+
+  caseInsensitiveInclude = (song) => {
+    return song.title.toLowerCase().includes(this.state.search_term) || 
+    song.title.includes(this.state.search_term) || 
+    song.artist.toLowerCase().includes(this.state.search_term) ||
+    song.artist.includes(this.state.search_term)
+  }
 
   render() {
     return (
@@ -54,8 +80,8 @@ class ManageSongs extends Component {
         <div className="container">
           <div>
             <h2>Manage Songs</h2>
-            <input></input>
-            <button>Search</button>
+            <input onChange={this.handleChange}></input>
+            <button onClick={this.searchSongs}>Search</button>
           </div>
           <div>
             <Table>
@@ -68,7 +94,7 @@ class ManageSongs extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.songs.map(song =>
+                {this.props.filteredSongs.map(song =>
                   <TableRow key={song.id}>
                     <TableCell>
                       {song.title}

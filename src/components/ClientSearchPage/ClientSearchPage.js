@@ -25,8 +25,6 @@ class ClientSearchPage extends Component {
 
   searchSongs = () => {
     let filtered_songs = []
-    /* push to filtered_songs if title or artist includes the term
-       MANG TO DO: case insensitive */
     this.props.songs.map(song => {
       if (this.caseInsensitiveInclude(song)) {
         filtered_songs.push(song)

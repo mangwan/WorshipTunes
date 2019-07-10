@@ -56,6 +56,3 @@ const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps)(withRouter(SongGrid));
 
-     {/* <pre>
-            {JSON.stringify(this.props, null, 2)}
-          </pre> */}
