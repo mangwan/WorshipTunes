@@ -94,9 +94,12 @@ class EditSong extends Component {
                 },
                 id: this.props.match.params.id,
             });
-            alert('Song has been updated!');
-            /* MANG TO DO: dispatch to a saga that does a put command. 
-               any need to update store with reducer? */
+            swal({
+                title: "Song Updated!",
+                text: "",
+                icon: "success",
+                button: "Ok",
+            });
         } else {
             alert('Please fill out all required fields!');
             console.log(this.state)
@@ -132,7 +135,7 @@ class EditSong extends Component {
                                 <Box p={1}><TextField
                                     label="Song Title"
                                     id="title"
-                                    value={this.state.songTitle}
+                                    value={this.state.title}
                                     onChange={this.handleInputChangeFor('title')}
                                     fullWidth
                                     variant="outlined"
@@ -140,7 +143,7 @@ class EditSong extends Component {
                                 <Box p={1}><TextField
                                     label="Artist Name"
                                     id="artist"
-                                    value={this.state.artistName}
+                                    value={this.state.artist}
                                     onChange={this.handleInputChangeFor('artist')}
                                     fullWidth
                                     variant="outlined"
