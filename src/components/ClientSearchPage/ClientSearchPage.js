@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SongGrid from '../SongGrid/SongGrid';
-// import photo from '../../../public/images/moutain.jpg'
 import '../ClientSearchPage/ClientSearchPage.css';
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
 
-// const ClientSearchPage = props => (
+
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    backgroundColor: 'white',
+    width: '100%',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: '20px',
+  },
+  button: {
+    marginTop: '30px',
+    backgroundColor: '#1DB954',
+
+  },
+};
+
 class ClientSearchPage extends Component {
   state = {
     search_term: "",
@@ -47,16 +65,32 @@ class ClientSearchPage extends Component {
           <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
         <div className="container">
-          <div>
+          <div className="search">
+          <Container component="main" maxWidth="xl">
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={12}>
+            <div style={styles.title}>
             <h2>Search for a Song</h2>
-            <input onChange={this.handleChange} />
+            </div>
+            </Grid>
+                <Grid item xs={12}>
+                <TextField
+        id="standard-search"
+        label="Search field"
+        type="search"
+        margin="normal"
+        onChange={this.handleChange}
+      />
+            {/* <input onChange={this.handleChange} /> */}
             <button onClick={this.searchSongs}>Search</button>
-
+            </Grid>
+            </Grid>
+           </Container>
           </div>
-          <div>
+          <div className="title" style={styles.title}>
             <h2 className="songlist">Song List</h2>
+            </div>
             <SongGrid />
-          </div>
           {/* <pre>
           {JSON.stringify(this.props, null, 2)}
         </pre> */}
