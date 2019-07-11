@@ -71,6 +71,7 @@ class LoginPage extends Component {
             margin="normal"
             required
             fullWidth
+            type="password"
             id="password"
             label="Password"
             name="password"

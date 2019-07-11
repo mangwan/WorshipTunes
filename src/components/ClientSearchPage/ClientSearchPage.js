@@ -10,7 +10,7 @@ import '../ClientSearchPage/ClientSearchPage.css';
 // const ClientSearchPage = props => (
 class ClientSearchPage extends Component {
   state = {
-    search_term: ""
+    search_term: "",
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class ClientSearchPage extends Component {
 
   handleChange = (event) => {
     this.setState({
-      search_term: event.target.value
+      search_term: event.target.value,
     })
   }
 
@@ -30,11 +30,7 @@ class ClientSearchPage extends Component {
         filtered_songs.push(song)
       }
     })
-
     this.props.dispatch({ type: 'SET_FILTERED_SONGS', payload: filtered_songs })
-    /* MANG STRETCH GOAL: stretch goal is to instead push to 
-       a new page that saves the search in the url */
-    console.log(filtered_songs)
   }
 
   caseInsensitiveInclude = (song) => {
