@@ -20,3 +20,8 @@ background-size: cover;
     height:100%;
     background:rgba(0, 0, 0, 0.3);
   }
+
+
+  .title {
+      font-weight: lighter;
+  }

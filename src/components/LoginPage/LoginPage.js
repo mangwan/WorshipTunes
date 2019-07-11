@@ -59,8 +59,6 @@ class LoginPage extends Component {
     });
   }
 
-
-
   render() {
     return (
       <div className="background">
@@ -73,12 +71,12 @@ class LoginPage extends Component {
                   <h1>Login</h1>
                 </div>
                 {this.props.errors.loginMessage && (
-                <h4
+                <h5
                   className="alert"
                   role="alert"
                 >
                   {this.props.errors.loginMessage}
-                </h4>
+                </h5>
               )}
                 <TextField
                   variant="outlined"
