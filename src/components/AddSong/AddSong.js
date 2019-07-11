@@ -110,7 +110,7 @@ class AddSong extends Component {
                             </Grid>
                             <Grid item xs={6}>
                                 <Box p={1}><TextField
-                                    label="Song Title"
+                                    label="Song Title*"
                                     id="songTitle"
                                     value={this.state.songTitle}
                                     onChange={this.handleInputChangeFor('songTitle')}
@@ -118,7 +118,7 @@ class AddSong extends Component {
                                     variant="outlined"
                                 /></Box>
                                 <Box p={1}><TextField
-                                    label="Artist Name"
+                                    label="Artist Name*"
                                     id="artistName"
                                     value={this.state.artistName}
                                     onChange={this.handleInputChangeFor('artistName')}
@@ -126,7 +126,7 @@ class AddSong extends Component {
                                     variant="outlined"
                                 /></Box>
                                 <Box p={1}><TextField
-                                    label="Lyrics"
+                                    label="Lyrics*"
                                     id="lyrics"
                                     multiline
                                     rows="12"
@@ -171,7 +171,7 @@ class AddSong extends Component {
                                     variant="outlined"
                                 /></Box>
                                 <Box p={1}><FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                    <InputLabel htmlFor="status">Tempo</InputLabel>
+                                    <InputLabel htmlFor="status">Tempo*</InputLabel>
                                     <Select
                                         input={<OutlinedInput name="Tempo" id="tempo" />}
                                         value={this.state.tempo}
@@ -183,7 +183,7 @@ class AddSong extends Component {
                                     </Select>
                                 </FormControl></Box>
                                 <Box p={1}><FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                    <InputLabel htmlFor="status">Original Key</InputLabel>
+                                    <InputLabel htmlFor="status">Original Key*</InputLabel>
                                     <Select
                                         input={<OutlinedInput name="originalkey" id="originalkey" />}
                                         value={this.state.originalKey}

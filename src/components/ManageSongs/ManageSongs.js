@@ -155,14 +155,6 @@ class ManageSongs extends Component {
                       </Button>
                     </TableCell>
                     <TableCell>
-                      {/* <Button
-                        style={styles.button}
-                        variant="outlined"
-                        color="secondary"
-                        type="submit"
-                        onClick={() => this.handleClickDelete(song.id)}
-                        song={song}>Delete
-                      </Button> */}
                       <Button
                         variant="outlined"
                         style={styles.buttonDelete}

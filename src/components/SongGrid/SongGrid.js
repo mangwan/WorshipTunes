@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import './SongGrid.css';
 
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
 
 const styles = {
@@ -37,6 +38,7 @@ class SongGrid extends Component {
 
   render() {
     return (
+      <Container component="main" maxWidth="md">
       <Grid container id="SongGrid" justify="center" spacing={2}>
           {this.props.filteredSongs.map(song => (
             <Grid container spacing={2} item xs={6} className="imageContainer" key={song.id}>            
@@ -47,6 +49,7 @@ class SongGrid extends Component {
             </Grid>
           ))}
         </Grid>
+        </Container>
     );
   }
 }
