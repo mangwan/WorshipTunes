@@ -99,7 +99,9 @@ class EditSong extends Component {
                 text: "",
                 icon: "success",
                 button: "Ok",
-            });
+            })
+            .then(() => {
+                this.props.history.push('/manage-songs')})
         } else {
             alert('Please fill out all required fields!');
             console.log(this.state)
