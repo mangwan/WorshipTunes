@@ -18,7 +18,7 @@ const styles = {
     color: '#FFF',
   },
   button: {
-    marginTop: '30px',
+    marginTop: '15px',
   },
   TextField: {
     borderColor: 'white',
@@ -67,18 +67,19 @@ class LoginPage extends Component {
         <div class="overlay">
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-              {this.props.errors.loginMessage && (
-                <h2
-                  className="alert"
-                  role="alert"
-                >
-                  {this.props.errors.loginMessage}
-                </h2>
-              )}
+          
               <form onSubmit={this.login} noValidate>
                 <div style={styles.title}>
                   <h1>Login</h1>
                 </div>
+                {this.props.errors.loginMessage && (
+                <h4
+                  className="alert"
+                  role="alert"
+                >
+                  {this.props.errors.loginMessage}
+                </h4>
+              )}
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -93,13 +94,14 @@ class LoginPage extends Component {
                   onChange={this.handleInputChangeFor('username')}
                   style={styles.TextField}
                   style={{
-                    backgroundColor: "transparent"
+                    backgroundColor: "rgba(255, 255, 255, 0.3)"
                   }}
                   InputProps={{
                     style: {
-                      color: "#FFF"
+                      color: "white"
                     }
-                  }}
+                  }
+                  }
                 />
                 <TextField
                   variant="outlined"
@@ -114,14 +116,17 @@ class LoginPage extends Component {
                   autoFocus
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
+                  color="primary"
+                  style={styles.TextField}
                   style={{
-                    backgroundColor: "transparent"
+                    backgroundColor: "rgba(255, 255, 255, 0.3)"
                   }}
                   InputProps={{
                     style: {
-                      color: "#FFF"
+                      color: "white"
                     }
-                  }}
+                  }
+                  }
                 />
                 <Button
                   type="submit"
