@@ -39,13 +39,14 @@ class RequestSongPage extends Component {
 
   submitRequest = (event) => {
     event.preventDefault();
-    if (this.state.name && this.state.email && this.state.song_title && this.state.artist_name && this.state.date) {
+    if (this.state.name && this.state.email && this.state.song_title && this.state.artist_name) {
       this.props.dispatch({
         type: 'POST_SONG_REQUEST',
         payload: {
           name: this.state.name,
           email: this.state.email,
           song_title: this.state.song_title,
+          artist_name: this.state.artist_name,
         },
       });
       this.setState({
@@ -53,7 +54,6 @@ class RequestSongPage extends Component {
         email: '',
         song_title: '',
         artist_name: '',
-        date: '',
       });
       swal({
         title: "Request Sent!",

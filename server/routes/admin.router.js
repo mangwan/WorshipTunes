@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //input info for a new song
 // router.post('/', (req, res) => {
@@ -15,7 +16,7 @@ const router = express.Router();
 
 
 //get all song requests from database
-router.get('/song-request', (req, res) => {
+router.get('/song-request', rejectUnauthenticated,  (req, res) => {
     pool.query('SELECT * FROM "song_requests"')
         .then(result => res.send(result.rows))
         .catch(error => {
@@ -25,7 +26,7 @@ router.get('/song-request', (req, res) => {
 });
 
 //delete songs 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "song" WHERE "id"=$1;`, [req.params.id])
         .then(result => {
             res.sendStatus(201)
@@ -35,7 +36,7 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 //delete songs request
-router.delete('/delete/song-requests/:id', (req, res) => {
+router.delete('/delete/song-requests/:id', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "song_requests" WHERE "id"=$1;`, [req.params.id])
         .then(result => {
             res.sendStatus(201)
@@ -45,7 +46,7 @@ router.delete('/delete/song-requests/:id', (req, res) => {
 });
 
 //add new song
-router.post('/add-song', (req, res) => {
+router.post('/add-song', rejectUnauthenticated, (req, res) => {
     pool.query(`INSERT INTO "song" ("title", "artist", "lyrics", "original_key", "tempo", "BPM", "CCLI", "spotify_uri", "album_cover")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
         [req.body.songTitle, req.body.artistName, req.body.lyrics, req.body.originalKey, req.body.tempo,
@@ -58,7 +59,7 @@ router.post('/add-song', (req, res) => {
 });
 
 //update song
-router.put('/edit-song/:id', (req, res) => {
+router.put('/edit-song/:id', rejectUnauthenticated, (req, res) => {
     pool.query(`UPDATE "song" SET 
         "title"=$1,
         "artist"=$2,

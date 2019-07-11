@@ -8,6 +8,15 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
+
+const styles = {
+  title: {
+    textAlign: 'center',
+    fontSize: '20px',
+    marginTop: '150px',
+  },
+};
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -40,6 +49,7 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <div className="background">
       <Container component="main" maxWidth="xs">
         {this.props.errors.loginMessage && (
           <h2
@@ -50,7 +60,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login} noValidate>
-          <div>
+        <div style={styles.title}>
             <h1>Login</h1>
           </div>
           <TextField
@@ -105,6 +115,7 @@ class LoginPage extends Component {
           </Link>
         </center>
       </Container>
+      </div>
     );
   }
 }

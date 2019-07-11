@@ -7,20 +7,17 @@ import '../ClientSearchPage/ClientSearchPage.css';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+
 
 const styles = {
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    backgroundColor: 'white',
-    width: '100%',
-  },
   title: {
     textAlign: 'center',
     fontSize: '20px',
   },
   button: {
-    marginTop: '30px',
+    // marginTop: '30px',
     backgroundColor: '#1DB954',
 
   },
@@ -65,25 +62,41 @@ class ClientSearchPage extends Component {
           <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
         <div className="container">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
           <div className="search">
           <Container component="main" maxWidth="xl">
           <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
             <div style={styles.title}>
-            <h2>Search for a Song</h2>
+            <h2>Search for a Song or Artist</h2>
             </div>
             </Grid>
-                <Grid item xs={12}>
+            <Container component="main" maxWidth="md">
+            <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
+            <Grid container spacing={3}>
+              <Grid item xs={1}>
+              <i class="material-icons md-36" >search</i>
+              </Grid>
+                <Grid item xs={9}>
                 <TextField
-        id="standard-search"
-        label="Search field"
-        type="search"
-        margin="normal"
-        onChange={this.handleChange}
-      />
-            {/* <input onChange={this.handleChange} /> */}
-            <button onClick={this.searchSongs}>Search</button>
+                  id="standard-search"
+                  type="search"
+                  margin="normal"
+                  onChange={this.handleChange}
+                  fullWidth
+                />
             </Grid>
+            <Grid item xs={1}>
+            <Button 
+             style={styles.button} 
+             variant="contained" 
+             color="secondary" 
+             type="submit"
+            onClick={this.searchSongs}>Search</Button>
+            </Grid>
+            </Grid>
+            </form>
+            </Container>
             </Grid>
            </Container>
           </div>

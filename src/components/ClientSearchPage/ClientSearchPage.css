@@ -2,6 +2,13 @@
     margin: 50px;
 }
 
-.search {
+/* .search {
     background: #E0E0E0;
-}
+} */
+
+.material-icons.md-36 {
+    display: inline-flex;
+    vertical-align: top;
+    font-size: 36px;
+    color: #1DB954;
+  }

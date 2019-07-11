@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 
 //grab songs to post on home page
-router.get('/song', async (req, res) => {
+router.get('/song', rejectUnauthenticated, async (req, res) => {
     pool.query(`SELECT * FROM "song";`)
         .then(result => res.send(result.rows))
         .catch(error => {
@@ -20,7 +20,7 @@ router.get('/song', async (req, res) => {
         });
 });
 
-router.get('/song/:id/details', async (req, res) => {
+router.get('/song/:id/details', rejectUnauthenticated, async (req, res) => {
     pool.query('SELECT * FROM "song" WHERE "id"=$1 LIMIT 1;', [req.params.id])
         .then(result => res.send(result.rows[0]))
         .catch(error => {
@@ -30,7 +30,7 @@ router.get('/song/:id/details', async (req, res) => {
 });
 
 //send song requests to the database
-router.post('/song-request', (req, res) => {
+router.post('/song-request', rejectUnauthenticated, (req, res) => {
     pool.query(`INSERT INTO "song_requests" ("name", "email", "song_title", "artist_name")
     VALUES ($1, $2, $3, $4);`, [req.body.name, req.body.email, req.body.song_title, req.body.artist_name])
     .then(response => {
