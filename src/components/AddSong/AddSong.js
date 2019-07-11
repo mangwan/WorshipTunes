@@ -26,7 +26,8 @@ const styles = {
         fontSize: '20px',
     },
     button: {
-        marginTop: '30px',
+        marginTop: '10px',
+        backgroundColor: '#1DB954',
 
     },
 };

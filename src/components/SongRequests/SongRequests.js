@@ -19,7 +19,6 @@ const styles = {
   },
   title: {
     textAlign: 'center',
-    // color: '#1DB954',
     fontSize: '20px',
   },
 };
