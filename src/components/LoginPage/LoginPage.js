@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LoginPage.css';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
 //Material UI
 import Button from '@material-ui/core/Button';
@@ -8,14 +10,26 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
-
 const styles = {
   title: {
     textAlign: 'center',
     fontSize: '20px',
     marginTop: '150px',
+    color: '#FFF',
   },
+  button: {
+    marginTop: '30px',
+  },
+  TextField: {
+    borderColor: 'white',
+  }
 };
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#FFF' },
+  },
+});
 
 class LoginPage extends Component {
   state = {
@@ -50,71 +64,94 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="background">
-      <Container component="main" maxWidth="xs">
-        {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
-        <form onSubmit={this.login} noValidate>
-        <div style={styles.title}>
-            <h1>Login</h1>
-          </div>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            value={this.state.username}
-            onChange={this.handleInputChangeFor('username')}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            type="password"
-            id="password"
-            label="Password"
-            name="password"
-            autoComplete="password"
-            autoFocus
-            value={this.state.password}
-            onChange={this.handleInputChangeFor('password')}
-          />
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            // className={classes.root}                  
-            value="Log In"
-          >
-            Sign In
+        <div class="overlay">
+          <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+              {this.props.errors.loginMessage && (
+                <h2
+                  className="alert"
+                  role="alert"
+                >
+                  {this.props.errors.loginMessage}
+                </h2>
+              )}
+              <form onSubmit={this.login} noValidate>
+                <div style={styles.title}>
+                  <h1>Login</h1>
+                </div>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                  style={styles.TextField}
+                  style={{
+                    backgroundColor: "transparent"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "#FFF"
+                    }
+                  }}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  type="password"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  autoComplete="password"
+                  autoFocus
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                  style={{
+                    backgroundColor: "transparent"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "#FFF"
+                    }
+                  }}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="outlined"
+                  style={styles.button}
+                  // className={classes.root}                  
+                  value="Log In"
+                  color="primary"
+                >
+                  Sign In
           </Button>
-        </form>
-        <center>
-          <Link
-            component="button"
-            variant="body2"
-            // type="submit"
-            fullWidth
-            variant="outlined"
-            className="link"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
-          >
-            {"Don't have an account? Sign Up"}
-          </Link>
-        </center>
-      </Container>
+              </form>
+              <center>
+                <Link
+                  component="button"
+                  variant="body2"
+                  // type="submit"
+                  fullWidth
+                  variant="outlined"
+                  className="link"
+                  onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+                >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+
+              </center>
+            </Container>
+          </ThemeProvider>
+        </div>
       </div>
     );
   }
