@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import './SongDetails.css';
 
 //material UI
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +9,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
-import './SongDetails.css';
+import Divider from '@material-ui/core/Divider';
 
 const styles = {
   Breadcrumb: {
@@ -99,9 +100,9 @@ class SongDetails extends Component {
     return (
       <div>
 
-          <Grid item xs={12} sm={2}>
-          </Grid>
-          <div style={styles.Breadcrumb}>
+        <Grid item xs={12} sm={2}>
+        </Grid>
+        <div style={styles.Breadcrumb}>
           <Breadcrumbs
             separator="›"
             aria-label="Breadcrumb">
@@ -110,12 +111,13 @@ class SongDetails extends Component {
               onClick={() => this.props.history.push('/')}>
               Search
           </Link>
-            <Typography color="textPrimary">
+            <Typography
+              color="textPrimary">
               Song Details
           </Typography>
           </Breadcrumbs>
-          </div>
-                  <Container component="main" maxWidth="lg">
+        </div>
+        <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <h2>Chords</h2>
@@ -140,11 +142,44 @@ class SongDetails extends Component {
               <pre>Lyrics: {this.props.currentLyrics}</pre>
             </Grid>
             <Grid item xs={6}>
-              <h2>Song Details</h2>
-              <p>Tempo: {this.props.songDetails.tempo}</p>
-              <p>BPM: {this.props.songDetails.BPM}</p>
-              <p>Original Key: {this.props.songDetails.original_key}</p>
-              <p>CCLI#: {this.props.songDetails.CCLI}</p>
+              <Grid>
+                <h2>Song Details</h2>
+              </Grid>
+              <Grid container spacing={4}>
+                <Grid item xs={5}>
+                  Tempo:
+                </Grid>
+                <Grid item xs={7}>
+                  {this.props.songDetails.tempo}
+                </Grid>
+                <Grid xs={10}>
+                <Divider></Divider>
+                  </Grid>
+                <Grid item xs={5}>
+                  BPM
+                </Grid>
+                <Grid item xs={7}>
+                  {this.props.songDetails.BPM}
+                </Grid>
+                <Grid xs={10}>
+                <Divider></Divider>
+                  </Grid>
+                <Grid item xs={5}>
+                  Original Key
+                </Grid>
+                <Grid item xs={7}>
+                  {this.props.songDetails.original_key}
+                </Grid>
+                <Grid xs={10}>
+                <Divider></Divider>
+                  </Grid>
+                <Grid item xs={5}>
+                  CCLI#:
+                </Grid>
+                <Grid item xs={7}>
+                  {this.props.songDetails.CCLI}
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Container>

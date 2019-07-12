@@ -1,5 +1,5 @@
 .background {
-background-image: url(./../../Images/guitar.jpeg);
+background-image: url('./../Images/guitar.jpeg');
 height: 100%;
 position: absolute;
 width: 100%;

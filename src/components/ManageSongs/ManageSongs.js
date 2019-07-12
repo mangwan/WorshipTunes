@@ -110,7 +110,7 @@ class ManageSongs extends Component {
         <Container component="search" maxWidth="sm" style={styles.search}>
           <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
             <Grid container spacing={2}>
-              <Grid item xs={9}>
+              <Grid item xs={5}>
                 <ThemeProvider theme={theme}>
                   <TextField
                     id="standard-search"

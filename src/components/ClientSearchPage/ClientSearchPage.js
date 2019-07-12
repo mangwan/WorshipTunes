@@ -76,13 +76,11 @@ class ClientSearchPage extends Component {
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
           <div>
             <Container component="main" maxWidth="lg">
-              <Grid container spacing={2}>
-                <Grid item xs={12} xs={12}>
-                </Grid>
-                <Container component="main" maxWidth="sm" style={styles.search}>
+            <Container component="search" maxWidth="sm" style={styles.search}>
+         
                   <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
                     <Grid container spacing={2}>
-                      <Grid item xs={9}>
+                      <Grid item xs={5}>
                       <ThemeProvider theme={theme}>
                         <TextField
                           id="standard-search"
@@ -105,20 +103,17 @@ class ClientSearchPage extends Component {
                           onClick={this.searchSongs}>
                           <i class="material-icons">search</i>
                           Search
-            </Button>
+                        </Button>
                       </Grid>
                     </Grid>
                   </form>
-                </Container>
                 <Grid item xs={12} xs={12}>
                 </Grid>
-              </Grid>
+       
+              </Container>
             </Container>
           </div>
           <SongGrid />
-          {/* <pre>
-          {JSON.stringify(this.props, null, 2)}
-        </pre> */}
         </div>
       </div>
     );

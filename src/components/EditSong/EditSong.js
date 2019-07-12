@@ -202,22 +202,26 @@ class EditSong extends Component {
                                                 variant="outlined"
                                             />
                                         </Box>
-                                        <Box p={1}><TextField
-                                            label="CCLI#"
-                                            id="CCLI"
-                                            value={this.state.CCLI}
-                                            onChange={this.handleInputChangeFor('CCLI')}
-                                            fullWidth
-                                            variant="outlined"
-                                        /></Box>
-                                        <Box p={1}><TextField
-                                            label="Album URL"
-                                            id="album_cover"
-                                            value={this.state.album_cover}
-                                            onChange={this.handleInputChangeFor('album_cover')}
-                                            fullWidth
-                                            variant="outlined"
-                                        /></Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="CCLI#"
+                                                id="CCLI"
+                                                value={this.state.CCLI}
+                                                onChange={this.handleInputChangeFor('CCLI')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="Album URL"
+                                                id="album_cover"
+                                                value={this.state.album_cover}
+                                                onChange={this.handleInputChangeFor('album_cover')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
                                         <Box p={1}>
                                             <TextField
                                                 label="Spotify URI"
