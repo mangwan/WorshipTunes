@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //material ui
+import Container from '@material-ui/core/Container';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -58,11 +59,7 @@ class SongRequests extends Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
-        </header>
-        <div className="container">
+      <Container component="main" maxWidth="lg">
           <div style={styles.title}>
             <h2>Song Requests</h2>
           </div>
@@ -105,11 +102,7 @@ class SongRequests extends Component {
               </TableBody>
             </Table>
           </div>
-          {/* <pre>
-            {JSON.stringify(this.props, null, 2)}
-          </pre> */}
-        </div>
-      </div>
+      </Container>
     );
   }
 }
