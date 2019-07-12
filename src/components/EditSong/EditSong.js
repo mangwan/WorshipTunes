@@ -31,8 +31,9 @@ const styles = {
         fontSize: '20px',
     },
     button: {
-        marginTop: '30px',
-
+        margin: '25px',
+        
+        backgroundColor: '#1DB954',
     },
 };
 
