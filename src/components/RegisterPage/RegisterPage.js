@@ -5,15 +5,33 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import './RegisterPage';
 
 const styles = {
   title: {
     textAlign: 'center',
-    color: '#F7882F',
-    fontSize: '22px',
-    marginTop: '80px',
+    fontSize: '18px',
+    marginTop: '150px',
+    color: '#FFF',
   },
-}
+  button: {
+    marginTop: '5px',
+  },
+  TextField: {
+    borderColor: 'white',
+  },
+  link: {
+    margin: '20px',
+  }
+};
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#FFF' },
+  },
+});
 
 class RegisterPage extends Component {
   state = {
@@ -39,7 +57,7 @@ class RegisterPage extends Component {
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
-  } // end registerUser
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -49,6 +67,9 @@ class RegisterPage extends Component {
 
   render() {
     return (
+      <div className="background">
+        <div class="overlay">
+      <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" style={styles.main}>
         <div>
           {this.props.errors.registrationMessage && (
@@ -75,6 +96,16 @@ class RegisterPage extends Component {
               autoFocus
               value={this.state.first_name}
               onChange={this.handleInputChangeFor('first_name')}
+              style={styles.TextField}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.5)"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "black"
+                    }
+                  }
+                  }
             />
             <TextField
               variant="outlined"
@@ -82,12 +113,22 @@ class RegisterPage extends Component {
               required
               fullWidth
               id="lastname"
-              label="lastname"
+              label="Last Name"
               name="lastname"
               autoComplete="lastname"
               autoFocus
               value={this.state.last_name}
               onChange={this.handleInputChangeFor('last_name')}
+              style={styles.TextField}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.6)"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "black"
+                    }
+                  }
+                  }
             />
             <TextField
               variant="outlined"
@@ -101,6 +142,16 @@ class RegisterPage extends Component {
               autoFocus
               value={this.state.username}
               onChange={this.handleInputChangeFor('username')}
+              style={styles.TextField}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.6)"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "black"
+                    }
+                  }
+                  }
             />
             <TextField
               variant="outlined"
@@ -115,26 +166,36 @@ class RegisterPage extends Component {
               autoFocus
               value={this.state.password}
               onChange={this.handleInputChangeFor('password')}
+              style={styles.TextField}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.6)"
+                  }}
+                  InputProps={{
+                    style: {
+                      color: "black"
+                    }
+                  }
+                  }
             />
-             <div style={styles.button}>>
+             <div style={styles.button}>
             <Button
               type="submit"
               fullWidth
               variant="outlined"
               style={styles.button}
               value="Sign In"
+              color="primary"
             >
               Sign In
           </Button>
           </div>
           </form>
-          <center>
+          <center style={styles.link}>
             <Link
               component="button"
               variant="body2"
               fullWidth
-              variant="outlined"
-              className="link"
+              variant="outlined" 
               style={styles.register}
               value="Sign In"
               onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}                >
@@ -143,6 +204,9 @@ class RegisterPage extends Component {
           </center>
         </div>
       </Container>
+      </ThemeProvider>
+      </div>
+      </div>
     );
   }
 }

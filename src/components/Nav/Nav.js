@@ -33,14 +33,14 @@ const Nav = (props) => (
           </Link></Button>)}
         {props.user.id && props.user.is_admin && (
           <>
-            <Button><Link className="nav-link" to="/manage-songs">
-              Manage Songs
-          </Link></Button>
             <Button><Link className="nav-link" to="/song-requests">
               Song Requests
           </Link></Button>
             <Button><Link className="nav-link" to="/add-song">
               Add Song
+          </Link></Button>
+          <Button><Link className="nav-link" to="/manage-songs">
+              Manage Songs
           </Link></Button>
           </>
         )}

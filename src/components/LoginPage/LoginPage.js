@@ -22,6 +22,9 @@ const styles = {
   },
   TextField: {
     borderColor: 'white',
+  },
+  link: {
+    margin: '20px',
   }
 };
 
@@ -92,11 +95,11 @@ class LoginPage extends Component {
                   onChange={this.handleInputChangeFor('username')}
                   style={styles.TextField}
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.3)"
+                    backgroundColor: "rgba(255, 255, 255, 0.6)"
                   }}
                   InputProps={{
                     style: {
-                      color: "white"
+                      color: "black"
                     }
                   }
                   }
@@ -117,11 +120,11 @@ class LoginPage extends Component {
                   color="primary"
                   style={styles.TextField}
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.3)"
+                    backgroundColor: "rgba(255, 255, 255, 0.6)"
                   }}
                   InputProps={{
                     style: {
-                      color: "white"
+                      color: "black"
                     }
                   }
                   }
@@ -131,26 +134,22 @@ class LoginPage extends Component {
                   fullWidth
                   variant="outlined"
                   style={styles.button}
-                  // className={classes.root}                  
                   value="Log In"
                   color="primary"
                 >
                   Sign In
           </Button>
               </form>
-              <center>
+              <center style={styles.link}>
                 <Link
                   component="button"
                   variant="body2"
-                  // type="submit"
                   fullWidth
                   variant="outlined"
-                  className="link"
                   onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>
-
               </center>
             </Container>
           </ThemeProvider>
@@ -160,8 +159,6 @@ class LoginPage extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
