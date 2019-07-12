@@ -17,6 +17,10 @@ const styles = {
     backgroundColor: 'white',
     width: '100%',
   },
+  subTitle: {
+    color: '#ff6f08',
+    textAlign: 'center',
+  },
   title: {
     textAlign: 'center',
     fontSize: '20px',
@@ -78,12 +82,13 @@ class RequestSongPage extends Component {
           </Grid>
           <Grid item xs={12} sm={8}>
             <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
+            <div align="right">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                    <div style={styles.title}>
             <h2>Request a Song</h2>
             </div>
-                  <h4>Looking for a song not in the database? Submit a song request here.</h4>
+                  <h4 style={styles.subTitle}>Looking for a song not in the database? Submit a song request here.</h4>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -125,8 +130,8 @@ class RequestSongPage extends Component {
                     variant="outlined"
                   />
                 </Grid>
-              </Grid>
-              <div>
+              </Grid> 
+          
                 <Button 
                 style={styles.button} 
                 variant="contained" 
@@ -134,7 +139,7 @@ class RequestSongPage extends Component {
                 type="submit">
                   Submit
                   </Button>
-              </div>
+                  </div>
             </form>
           </Grid>
           <Grid item xs={12} sm={2}>

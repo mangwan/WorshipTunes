@@ -81,7 +81,7 @@ class ClientSearchPage extends Component {
                 </Grid>
                 <Container component="main" maxWidth="sm" style={styles.search}>
                   <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
-                    <Grid container spacing={1}>
+                    <Grid container spacing={2}>
                       <Grid item xs={9}>
                       <ThemeProvider theme={theme}>
                         <TextField
