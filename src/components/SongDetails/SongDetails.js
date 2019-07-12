@@ -10,6 +10,11 @@ import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import './SongDetails.css';
 
+const styles = {
+  Breadcrumb: {
+    margin: '10px',
+  },
+};
 class SongDetails extends Component {
   componentDidMount = () => {
     const song_id = this.props.match.params.id
@@ -93,47 +98,55 @@ class SongDetails extends Component {
   render() {
     return (
       <div>
-        <header>
-          {/* <div className="container">
-          <img className="header" src="images/stars.jpg" alt="stars"></img>
-          </div> */}
-        </header>
-         <Breadcrumbs separator="›" aria-label="Breadcrumb">
-        <Link color="inherit" onClick={() => this.props.history.push('/')}>Search</Link>
-        <Typography color="textPrimary">Song Details</Typography>
-        </Breadcrumbs>
-        <Container component="main" maxWidth="lg">
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <h2>Chords</h2>
-            <h4>Artist: {this.props.songDetails.artist}</h4>
-            <h4>Title: {this.props.songDetails.title}</h4>
-            <h5>Key: {this.props.songDetails.original_key}</h5>
-            <select 
-            value={this.props.songDetails.current_key} onChange={this.handleChange}>
-              <option>Ab</option>
-              <option>A</option>
-              <option>Bb</option>
-              <option>B</option>
-              <option>C</option>
-              <option>Db</option>
-              <option>D</option>
-              <option>Eb</option>
-              <option>E</option>
-              <option>F</option>
-              <option>F#</option>
-              <option>G</option>
-            </select>
-            <pre>Lyrics: {this.props.currentLyrics}</pre>
+
+          <Grid item xs={12} sm={2}>
           </Grid>
-          <Grid item xs={6}>
-            <h2>Song Details</h2>
-            <p>Tempo: {this.props.songDetails.tempo}</p>
-            <p>BPM: {this.props.songDetails.BPM}</p>
-            <p>Original Key: {this.props.songDetails.original_key}</p>
-            <p>CCLI#: {this.props.songDetails.CCLI}</p>
+          <div style={styles.Breadcrumb}>
+          <Breadcrumbs
+            separator="›"
+            aria-label="Breadcrumb">
+            <Link
+              color="inherit"
+              onClick={() => this.props.history.push('/')}>
+              Search
+          </Link>
+            <Typography color="textPrimary">
+              Song Details
+          </Typography>
+          </Breadcrumbs>
+          </div>
+                  <Container component="main" maxWidth="lg">
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <h2>Chords</h2>
+              <h4>Artist: {this.props.songDetails.artist}</h4>
+              <h4>Title: {this.props.songDetails.title}</h4>
+              <h5>Key: {this.props.songDetails.original_key}</h5>
+              <select
+                value={this.props.songDetails.current_key} onChange={this.handleChange}>
+                <option>Ab</option>
+                <option>A</option>
+                <option>Bb</option>
+                <option>B</option>
+                <option>C</option>
+                <option>Db</option>
+                <option>D</option>
+                <option>Eb</option>
+                <option>E</option>
+                <option>F</option>
+                <option>F#</option>
+                <option>G</option>
+              </select>
+              <pre>Lyrics: {this.props.currentLyrics}</pre>
+            </Grid>
+            <Grid item xs={6}>
+              <h2>Song Details</h2>
+              <p>Tempo: {this.props.songDetails.tempo}</p>
+              <p>BPM: {this.props.songDetails.BPM}</p>
+              <p>Original Key: {this.props.songDetails.original_key}</p>
+              <p>CCLI#: {this.props.songDetails.CCLI}</p>
+            </Grid>
           </Grid>
-        </Grid>
         </Container>
       </div>
     );
