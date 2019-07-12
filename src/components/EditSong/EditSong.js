@@ -19,6 +19,9 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 
 const styles = {
+    Breadcrumb: {
+        margin: '10px',
+    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -27,12 +30,11 @@ const styles = {
     },
     title: {
         textAlign: 'center',
-        // color: '#1DB954',
         fontSize: '20px',
     },
     button: {
         margin: '25px',
-        
+
         backgroundColor: '#1DB954',
     },
 };
@@ -78,7 +80,6 @@ class EditSong extends Component {
             this.state.artist &&
             this.state.lyrics &&
             this.state.tempo &&
-            //need to add if statement to check if BPM and CCLI are numbers
             this.state.original_key) {
             this.props.dispatch({
                 type: 'EDIT_SONG_DETAILS',
@@ -101,11 +102,11 @@ class EditSong extends Component {
                 icon: "success",
                 button: "Ok",
             })
-            .then(() => {
-                this.props.history.push('/manage-songs')})
+                .then(() => {
+                    this.props.history.push('/manage-songs')
+                })
         } else {
             alert('Please fill out all required fields!');
-            console.log(this.state)
         }
     }
 
@@ -115,133 +116,155 @@ class EditSong extends Component {
                 <header>
                     <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
                 </header>
-                {/* <pre>
-                    {JSON.stringify(this.props, null, 2)}
-                </pre> */}
                 <div>
-                <Breadcrumbs separator="›" aria-label="Breadcrumb">
-        <Link color="inherit" onClick={() => this.props.history.push('/manage-songs')}>Manage Songs</Link>
-        <Typography color="textPrimary">Edit Song</Typography>
-        </Breadcrumbs>
-        <Container component="main" maxWidth="md">
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={2}>
-                    </Grid>
-                    <form style={styles.container} onSubmit={this.editSong}>
-                    <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <div style={styles.title}>
-                        <h2>Edit Song</h2>
-                        </div>
-                        </Grid>
-                            <Grid item xs={6}>
-                                <Box p={1}><TextField
-                                    label="Song Title"
-                                    id="title"
-                                    value={this.state.title}
-                                    onChange={this.handleInputChangeFor('title')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                                <Box p={1}><TextField
-                                    label="Artist Name"
-                                    id="artist"
-                                    value={this.state.artist}
-                                    onChange={this.handleInputChangeFor('artist')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                               <Box p={1}><TextField
-                                    label="Lyrics"
-                                    id="lyrics"
-                                    multiline
-                                    rows="12"
-                                    value={this.state.lyrics}
-                                    onChange={this.handleInputChangeFor('lyrics')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
+                    <div style={styles.Breadcrumb}>
+                        <Breadcrumbs
+                            separator="›"
+                            aria-label="Breadcrumb">
+                            <Link
+                                color="inherit"
+                                onClick={() => this.props.history.push('/manage-songs')}>
+                                Manage Songs
+                            </Link>
+                            <Typography
+                                color="textPrimary">
+                                Edit Song
+                            </Typography>
+                        </Breadcrumbs>
+                    </div>
+                    <Container component="main" maxWidth="md">
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={2}>
                             </Grid>
-                            <Grid item xs={6}>
-                            <Box p={1}><FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                    <InputLabel htmlFor="status">Tempo</InputLabel>
-                                    <Select
-                                        input={<OutlinedInput name="Tempo" id="tempo" />}
-                                        value={this.state.tempo}
-                                        onChange={this.handleInputChangeFor('tempo')}
-                                    >
-                                        <MenuItem value="Slow">Slow</MenuItem>
-                                        <MenuItem value="Medium">Medium</MenuItem>
-                                        <MenuItem value="Fast">Fast</MenuItem>
-                                    </Select>
-                                </FormControl></Box>
-                                <Box p={1}><TextField
-                                    label="BPM"
-                                    id="BPM"
-                                    value={this.state.BPM}
-                                    onChange={this.handleInputChangeFor('BPM')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                                <Box p={1}><TextField
-                                    label="CCLI#"
-                                    id="CCLI"
-                                    value={this.state.CCLI}
-                                    onChange={this.handleInputChangeFor('CCLI')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                                <Box p={1}><TextField
-                                    label="Album URL"
-                                    id="album_cover"
-                                    value={this.state.album_cover}
-                                    onChange={this.handleInputChangeFor('album_cover')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                                <Box p={1}><TextField
-                                    label="Spotify URI"
-                                    id="spotifyUri"
-                                    value={this.state.spotify_uri}
-                                    onChange={this.handleInputChangeFor('spotify_uri')}
-                                    fullWidth
-                                    variant="outlined"
-                                /></Box>
-                                <Box p={1}><FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                    <InputLabel htmlFor="status">Original Key</InputLabel>
-                                    <Select
-                                        input={<OutlinedInput name="originalkey" id="original_key" />}
-                                        value={this.state.original_key}
-                                        onChange={this.handleInputChangeFor('original_key')}
-                                    >
-                                        <MenuItem value="Ab">Ab</MenuItem>
-                                        <MenuItem value="A">A</MenuItem>
-                                        <MenuItem value="Bb">Bb</MenuItem>
-                                        <MenuItem value="B">B</MenuItem>
-                                        <MenuItem value="C">C</MenuItem>
-                                        <MenuItem value="Dd">Db</MenuItem>
-                                        <MenuItem value="D">D</MenuItem>
-                                        <MenuItem value="Eb">Eb</MenuItem>
-                                        <MenuItem value="E">E</MenuItem>
-                                        <MenuItem value="F">F</MenuItem>
-                                        <MenuItem value="F#">F#</MenuItem>
-                                        <MenuItem value="G">G</MenuItem>
-                                    </Select>
-                                </FormControl></Box>
-                                </Grid>
-                            <Button
-                                style={styles.button}
-                                variant="contained"
-                                color="secondary"
-                                type="submit">
-                                Save Edits
+                            <form style={styles.container} onSubmit={this.editSong}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <div style={styles.title}>
+                                            <h2>Edit Song</h2>
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="Song Title"
+                                                id="title"
+                                                value={this.state.title}
+                                                onChange={this.handleInputChangeFor('title')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="Artist Name"
+                                                id="artist"
+                                                value={this.state.artist}
+                                                onChange={this.handleInputChangeFor('artist')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="Lyrics"
+                                                id="lyrics"
+                                                multiline
+                                                rows="12"
+                                                value={this.state.lyrics}
+                                                onChange={this.handleInputChangeFor('lyrics')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Box p={1}>
+                                            <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                                <InputLabel htmlFor="status">Tempo</InputLabel>
+                                                <Select
+                                                    input={<OutlinedInput name="Tempo" id="tempo" />}
+                                                    value={this.state.tempo}
+                                                    onChange={this.handleInputChangeFor('tempo')}
+                                                >
+                                                    <MenuItem value="Slow">Slow</MenuItem>
+                                                    <MenuItem value="Medium">Medium</MenuItem>
+                                                    <MenuItem value="Fast">Fast</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="BPM"
+                                                id="BPM"
+                                                value={this.state.BPM}
+                                                onChange={this.handleInputChangeFor('BPM')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                        <Box p={1}><TextField
+                                            label="CCLI#"
+                                            id="CCLI"
+                                            value={this.state.CCLI}
+                                            onChange={this.handleInputChangeFor('CCLI')}
+                                            fullWidth
+                                            variant="outlined"
+                                        /></Box>
+                                        <Box p={1}><TextField
+                                            label="Album URL"
+                                            id="album_cover"
+                                            value={this.state.album_cover}
+                                            onChange={this.handleInputChangeFor('album_cover')}
+                                            fullWidth
+                                            variant="outlined"
+                                        /></Box>
+                                        <Box p={1}>
+                                            <TextField
+                                                label="Spotify URI"
+                                                id="spotifyUri"
+                                                value={this.state.spotify_uri}
+                                                onChange={this.handleInputChangeFor('spotify_uri')}
+                                                fullWidth
+                                                variant="outlined"
+                                            />
+                                        </Box>
+                                        <Box p={1}>
+                                            <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                                <InputLabel htmlFor="status">Original Key</InputLabel>
+                                                <Select
+                                                    input={<OutlinedInput name="originalkey" id="original_key" />}
+                                                    value={this.state.original_key}
+                                                    onChange={this.handleInputChangeFor('original_key')}
+                                                >
+                                                    <MenuItem value="Ab">Ab</MenuItem>
+                                                    <MenuItem value="A">A</MenuItem>
+                                                    <MenuItem value="Bb">Bb</MenuItem>
+                                                    <MenuItem value="B">B</MenuItem>
+                                                    <MenuItem value="C">C</MenuItem>
+                                                    <MenuItem value="Dd">Db</MenuItem>
+                                                    <MenuItem value="D">D</MenuItem>
+                                                    <MenuItem value="Eb">Eb</MenuItem>
+                                                    <MenuItem value="E">E</MenuItem>
+                                                    <MenuItem value="F">F</MenuItem>
+                                                    <MenuItem value="F#">F#</MenuItem>
+                                                    <MenuItem value="G">G</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Box>
+                                    </Grid>
+                                <Button
+                                    style={styles.button}
+                                    variant="contained"
+                                    color="secondary"
+                                    type="submit">
+                                    Save Edits
                             </Button>
+                                </Grid>
+                            </form>
                         </Grid>
-                    </form>
-                    </Grid>
-                <Grid item xs={12} sm={2}>
-                </Grid>
-            </Container>
+                        <Grid item xs={12} sm={2}>
+                        </Grid>
+                    </Container>
                 </div>
             </div>
 
