@@ -1,15 +1,11 @@
 .container {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* overflow: hidden; */
     object-fit: scale-down;
     height: 200px;
 }
 
-/* .container img {
-    
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
-} */
+.pre {
+    line-height:1.5em;
+    background-size:2.4em 2.4em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+

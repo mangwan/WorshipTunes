@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 
+
 const styles = {
   Breadcrumb: {
     margin: '10px',
@@ -121,10 +122,10 @@ class SongDetails extends Component {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <h2>Chords</h2>
-              <h4>Artist: {this.props.songDetails.artist}</h4>
-              <h4>Title: {this.props.songDetails.title}</h4>
-              <h5>Key: {this.props.songDetails.original_key}</h5>
-              <select
+              <h4>{this.props.songDetails.title}</h4>
+              <h4>{this.props.songDetails.artist}</h4>
+              <div class="custom-select">
+              Key: <select
                 value={this.props.songDetails.current_key} onChange={this.handleChange}>
                 <option>Ab</option>
                 <option>A</option>
@@ -139,7 +140,11 @@ class SongDetails extends Component {
                 <option>F#</option>
                 <option>G</option>
               </select>
-              <pre>Lyrics: {this.props.currentLyrics}</pre>
+              </div>
+              <br/>
+              <pre className="pre">
+              {this.props.currentLyrics}
+              </pre>
             </Grid>
             <Grid item xs={6}>
               <Grid>
