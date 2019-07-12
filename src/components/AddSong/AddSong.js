@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//Material UI
 import { TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -22,13 +23,15 @@ const styles = {
     },
     title: {
         textAlign: 'center',
-        // color: '#1DB954',
         fontSize: '20px',
     },
     button: {
         margin: '15px',
         backgroundColor: '#1DB954',
-
+    },
+    subTitle: {
+        color: '#ff6f08',
+        textAlign: 'center',
     },
 };
 
@@ -58,7 +61,6 @@ class AddSong extends Component {
             this.state.artistName &&
             this.state.lyrics &&
             this.state.tempo &&
-            //need to add if statement to check if BPM and CCLI are nubmers
             this.state.originalKey) {
             this.props.dispatch({
                 type: 'ADD_NEW_SONG',
@@ -108,6 +110,9 @@ class AddSong extends Component {
                                 <div style={styles.title}>
                                     <h2>Add a Song</h2>
                                 </div>
+                                <h4 style={styles.subTitle}>
+                                    Complete the form to add a new song to the database.
+                  </h4>
                             </Grid>
                             <Grid item xs={6}>
                                 <Box p={1}><TextField
@@ -130,7 +135,7 @@ class AddSong extends Component {
                                     label="Lyrics*"
                                     id="lyrics"
                                     multiline
-                                    rows="12"
+                                    rows="13"
                                     value={this.state.lyrics}
                                     onChange={this.handleInputChangeFor('lyrics')}
                                     fullWidth
@@ -162,7 +167,6 @@ class AddSong extends Component {
                                     fullWidth
                                     variant="outlined"
                                 /></Box>
-
                                 <Box p={1}><TextField
                                     label="Spotify URI"
                                     id="spotifyUri"
@@ -183,8 +187,11 @@ class AddSong extends Component {
                                         <MenuItem value="Fast">Fast</MenuItem>
                                     </Select>
                                 </FormControl></Box>
-                                <Box p={1}><FormControl style={styles.dropdown} fullWidth variant="outlined">
-                                    <InputLabel htmlFor="status">Original Key*</InputLabel>
+                                <Box p={1}>
+                                    <FormControl style={styles.dropdown} fullWidth variant="outlined">
+                                    <InputLabel 
+                                    htmlFor="status">Original Key*
+                                    </InputLabel>
                                     <Select
                                         input={<OutlinedInput name="originalkey" id="originalkey" />}
                                         value={this.state.originalKey}
@@ -203,15 +210,20 @@ class AddSong extends Component {
                                         <MenuItem value="F#">F#</MenuItem>
                                         <MenuItem value="G">G</MenuItem>
                                     </Select>
-                                </FormControl></Box>
+                                </FormControl>
+                                </Box>
                             </Grid>
-                            <Button
-                                style={styles.button}
-                                variant="contained"
-                                color="secondary"
-                                type="submit">
-                                Add Song
+                            <Grid xs={12}>
+                                <center>
+                                    <Button
+                                        style={styles.button}
+                                        variant="contained"
+                                        color="secondary"
+                                        type="submit">
+                                        Add Song
                             </Button>
+                                </center>
+                            </Grid>
                         </Grid>
                     </form>
                 </Grid>
