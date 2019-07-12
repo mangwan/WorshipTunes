@@ -1,14 +1,24 @@
+.image {
+    /* background-image: url('./../Images/studio.jpg'); */
+    height: 50%;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    margin: auto;
+    overflow: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
 .title {
     margin: 50px;
 }
 
-/* .search {
-    background: #E0E0E0;
-} */
-
-.material-icons.md-36 {
+.material-icons {
     display: inline-flex;
     vertical-align: top;
-    font-size: 36px;
-    color: #1DB954;
+    font-size: 24px;
+    color: #FFF;
   }
+  

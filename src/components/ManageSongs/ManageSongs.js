@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //material ui
+import Container from '@material-ui/core/Container';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +12,14 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import swal from 'sweetalert';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  // palette: {
+  //   primary: { main: '#000000' },
+  // },
+});
 
 const styles = {
   form: {
@@ -22,6 +31,16 @@ const styles = {
   },
   buttonDelete: {
     fontSize: '10px',
+  },
+  search: {
+    margin: '25px',
+  },
+  searchButton: {
+    marginTop: '25px',
+    backgroundColor: '#1DB954',
+  },
+  TextField: {
+    borderColor: 'black',
   },
 };
 
@@ -93,39 +112,39 @@ class ManageSongs extends Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
-        </header>
-        <div className="container">
-          <div>
-            <h2>Manage Songs</h2>
-            <div>
-              <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
-
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
-                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                      rel="stylesheet"></link>
-                    <i class="material-icons">search</i>
-                    <span></span>
+      <Container component="main" maxWidth="lg">
+              <Container component="main" maxWidth="sm" style={styles.search}>
+                <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
+                  <Grid container spacing={1}>
+                    <Grid item xs={9}>
+                      <ThemeProvider theme={theme}>
+                        <TextField
+                          id="standard-search"
+                          label="Search for an artist or song..."
+                          type="search"
+                          margin="normal"
+                          variant="outlined"
+                          onChange={this.handleChange}
+                          fullWidth
+                          style={styles.TextField}
+                        />
+                      </ThemeProvider>
+                    </Grid>
+                    <Grid item xs={1}>
+                      <Button
+                        style={styles.searchButton}
+                        variant="contained"
+                        color="secondary"
+                        type="submit"
+                        onClick={this.searchSongs}>
+                        <i class="material-icons">search</i>
+                        Search
+            </Button>
+                    </Grid>
                   </Grid>
-                  <TextField
-                    id="search"
-                    type="search"
-                    label="Search for a song or artist"
-                    onChange={this.handleChange}
-                    margin="normal"
-                    style={styles.textField}
-                  />
+                </form>
+              </Container>
 
-                  <Button>Search</Button>
-                </Grid>
-
-              </form>
-            </div>
-          </div>
-          <div>
             <Table>
               <TableHead>
                 <TableRow>
@@ -167,12 +186,7 @@ class ManageSongs extends Component {
                   </TableRow>)}
               </TableBody>
             </Table>
-          </div>
-          {/* <pre>
-          {JSON.stringify(this.props, null, 2)}
-        </pre> */}
-        </div>
-      </div>
+            </Container> 
     );
   }
 }

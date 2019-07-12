@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SongGrid from '../SongGrid/SongGrid';
-import '../ClientSearchPage/ClientSearchPage.css';
 
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
-
+const theme = createMuiTheme({
+  // palette: {
+  //   primary: { main: '#000000' },
+  // },
+  // margin: '0px',
+});
 
 const styles = {
   title: {
@@ -17,9 +23,14 @@ const styles = {
     fontSize: '20px',
   },
   button: {
-    // marginTop: '30px',
+    marginTop: '25px',
     backgroundColor: '#1DB954',
-
+  },
+  search: {
+    margin: '25px',
+  },
+  TextField: {
+    borderColor: 'black',
   },
 };
 
@@ -49,10 +60,10 @@ class ClientSearchPage extends Component {
   }
 
   caseInsensitiveInclude = (song) => {
-    return song.title.toLowerCase().includes(this.state.search_term) || 
-    song.title.includes(this.state.search_term) || 
-    song.artist.toLowerCase().includes(this.state.search_term) ||
-    song.artist.includes(this.state.search_term)
+    return song.title.toLowerCase().includes(this.state.search_term) ||
+      song.title.includes(this.state.search_term) ||
+      song.artist.toLowerCase().includes(this.state.search_term) ||
+      song.artist.includes(this.state.search_term)
   }
 
   render() {
@@ -61,49 +72,50 @@ class ClientSearchPage extends Component {
         <header>
           <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
-        <div className="container">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-          <div className="search">
-          <Container component="main" maxWidth="xl">
-          <Grid container spacing={2}>
-          <Grid item xs={12} sm={12}>
-            <div style={styles.title}>
-            <h2>Search for a Song or Artist</h2>
-            </div>
-            </Grid>
-            <Container component="main" maxWidth="md">
-            <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
-            <Grid container spacing={3}>
-              <Grid item xs={1}>
-              <i class="material-icons md-36" >search</i>
+        <div>
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+          <div>
+            <Container component="main" maxWidth="lg">
+              <Grid container spacing={2}>
+                <Grid item xs={12} xs={12}>
+                </Grid>
+                <Container component="main" maxWidth="sm" style={styles.search}>
+                  <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
+                    <Grid container spacing={1}>
+                      <Grid item xs={9}>
+                      <ThemeProvider theme={theme}>
+                        <TextField
+                          id="standard-search"
+                          label="Search for an artist or song..."
+                          type="search"
+                          margin="normal"
+                          variant="outlined"
+                          onChange={this.handleChange}
+                          fullWidth
+                          style={styles.TextField}
+                        />
+                        </ThemeProvider>
+                      </Grid>
+                      <Grid item xs={1}>
+                        <Button
+                          style={styles.button}
+                          variant="contained"
+                          color="secondary"
+                          type="submit"
+                          onClick={this.searchSongs}>
+                          <i class="material-icons">search</i>
+                          Search
+            </Button>
+                      </Grid>
+                    </Grid>
+                  </form>
+                </Container>
+                <Grid item xs={12} xs={12}>
+                </Grid>
               </Grid>
-                <Grid item xs={9}>
-                <TextField
-                  id="standard-search"
-                  type="search"
-                  margin="normal"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-            </Grid>
-            <Grid item xs={1}>
-            <Button 
-             style={styles.button} 
-             variant="contained" 
-             color="secondary" 
-             type="submit"
-            onClick={this.searchSongs}>Search</Button>
-            </Grid>
-            </Grid>
-            </form>
             </Container>
-            </Grid>
-           </Container>
           </div>
-          <div className="title" style={styles.title}>
-            <h2 className="songlist">Song List</h2>
-            </div>
-            <SongGrid />
+          <SongGrid />
           {/* <pre>
           {JSON.stringify(this.props, null, 2)}
         </pre> */}

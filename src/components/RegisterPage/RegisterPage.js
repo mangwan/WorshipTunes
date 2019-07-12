@@ -104,8 +104,7 @@ class RegisterPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
             />
             <TextField
               variant="outlined"
@@ -127,8 +126,7 @@ class RegisterPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
             />
             <TextField
               variant="outlined"
@@ -150,8 +148,7 @@ class RegisterPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
             />
             <TextField
               variant="outlined"
@@ -174,8 +171,7 @@ class RegisterPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
             />
              <div style={styles.button}>
             <Button
@@ -198,7 +194,8 @@ class RegisterPage extends Component {
               variant="outlined" 
               style={styles.register}
               value="Sign In"
-              onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}                >
+              onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}                
+              >
               {"Back to Login"}
             </Link>
           </center>

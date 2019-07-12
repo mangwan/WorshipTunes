@@ -68,7 +68,6 @@ class LoginPage extends Component {
         <div class="overlay">
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-
               <form onSubmit={this.login} noValidate>
                 <div style={styles.title}>
                   <h1>Login</h1>
