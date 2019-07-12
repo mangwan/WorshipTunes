@@ -252,13 +252,17 @@ class EditSong extends Component {
                                             </FormControl>
                                         </Box>
                                     </Grid>
-                                <Button
-                                    style={styles.button}
-                                    variant="contained"
-                                    color="secondary"
-                                    type="submit">
-                                    Save Edits
-                            </Button>
+                                    <Grid xs={12}>
+                                        <center>
+                                            <Button
+                                                style={styles.button}
+                                                variant="contained"
+                                                color="secondary"
+                                                type="submit">
+                                                Save Edits
+                                            </Button>
+                                        </center>
+                                    </Grid>
                                 </Grid>
                             </form>
                         </Grid>
