@@ -12,7 +12,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //grab songs to post on home page
 router.get('/song', rejectUnauthenticated, async (req, res) => {
-    pool.query(`SELECT * FROM "song";`)
+    pool.query(`SELECT * FROM "song" ORDER BY "title";`)
         .then(result => res.send(result.rows))
         .catch(error => {
             console.log('error in SONG query', error);

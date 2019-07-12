@@ -68,19 +68,19 @@ class LoginPage extends Component {
         <div class="overlay">
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-          
+
               <form onSubmit={this.login} noValidate>
                 <div style={styles.title}>
                   <h1>Login</h1>
                 </div>
                 {this.props.errors.loginMessage && (
-                <h5
-                  className="alert"
-                  role="alert"
-                >
-                  {this.props.errors.loginMessage}
-                </h5>
-              )}
+                  <h5
+                    className="alert"
+                    role="alert"
+                  >
+                    {this.props.errors.loginMessage}
+                  </h5>
+                )}
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -101,8 +101,7 @@ class LoginPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
                 />
                 <TextField
                   variant="outlined"
@@ -126,8 +125,7 @@ class LoginPage extends Component {
                     style: {
                       color: "black"
                     }
-                  }
-                  }
+                  }}
                 />
                 <Button
                   type="submit"
