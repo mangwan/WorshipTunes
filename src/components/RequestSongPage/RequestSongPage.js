@@ -82,7 +82,7 @@ class RequestSongPage extends Component {
           </Grid>
           <Grid item xs={12} sm={8}>
             <form style={styles.container} onSubmit={this.submitRequest} autoComplete="off">
-            <div align="right">
+            <center>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                    <div style={styles.title}>
@@ -139,7 +139,7 @@ class RequestSongPage extends Component {
                 type="submit">
                   Submit
                   </Button>
-                  </div>
+                  </center>
             </form>
           </Grid>
           <Grid item xs={12} sm={2}>
