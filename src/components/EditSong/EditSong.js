@@ -31,6 +31,7 @@ const styles = {
     title: {
         textAlign: 'center',
         fontSize: '20px',
+        marginTop: '40px',
     },
     button: {
         margin: '25px',
@@ -113,9 +114,6 @@ class EditSong extends Component {
     render() {
         return (
             <div>
-                <header>
-                    <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
-                </header>
                 <div>
                     <div style={styles.Breadcrumb}>
                         <Breadcrumbs

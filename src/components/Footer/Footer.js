@@ -1,15 +1,24 @@
 import React from 'react';
 import './Footer.css'
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+//Material UI
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+const styles = {
+  toolbarTitle: {
+    flexGrow: 1,
+  },
+};
 
 const Footer = () => (
-  <footer>
-    {/* &copy; Prime Digital Academy */}
+  <Container component="main" maxWidth="lg">
+  <Typography color="inherit" noWrap styles={styles.toolbarTitle}>
+    <footer>
+      {/* &copy; 2019 WorshipTunes */}
   </footer>
+  </Typography>
+  </Container>
 );
 
 export default Footer;

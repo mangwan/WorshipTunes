@@ -42,6 +42,11 @@ const styles = {
   TextField: {
     borderColor: 'black',
   },
+  title: {
+    textAlign: 'center',
+    fontSize: '20px',
+    marginTop: '20px',
+  },
 };
 
 class ManageSongs extends Component {
@@ -106,81 +111,89 @@ class ManageSongs extends Component {
 
   render() {
     return (
-      <Container component="main" maxWidth="lg">
-        <Container component="search" maxWidth="sm" style={styles.search}>
-          <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
-            <Grid container spacing={2}>
-              <Grid item xs={5}>
-                <ThemeProvider theme={theme}>
-                  <TextField
-                    id="standard-search"
-                    label="Search for an artist or song..."
-                    type="search"
-                    margin="normal"
-                    variant="outlined"
-                    onChange={this.handleChange}
-                    fullWidth
-                    style={styles.TextField}
-                  />
-                </ThemeProvider>
-              </Grid>
-              <Grid item xs={1}>
-                <Button
-                  style={styles.searchButton}
-                  variant="contained"
-                  color="secondary"
-                  type="submit"
-                  onClick={this.searchSongs}>
-                  <i class="material-icons">search</i>
-                  Search
-                </Button>
-              </Grid>
-            </Grid>         
-          </form>
-        </Container>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell>Artist</TableCell>
-              <TableCell>Edit</TableCell>
-              <TableCell>Delete</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.filteredSongs.map(song =>
-              <TableRow key={song.id}>
-                <TableCell>
-                  {song.title}
-                </TableCell>
-                <TableCell>
-                  {song.artist}
-                </TableCell>
-                <TableCell>
+      <div>
+        <header>
+          <img width="100%" src="images/desk.jpg" alt="desk"></img>
+        </header>
+        <Container component="main" maxWidth="lg">
+          <Container component="search" maxWidth="sm" style={styles.search}>
+            <div style={styles.title}>
+              <h2>Manage Songs</h2>
+            </div>
+            <form onSubmit={this.searchSongs} style={styles.form} noValidate autoComplete="off">
+              <Grid container spacing={2}>
+                <Grid item xs={5}>
+                  <ThemeProvider theme={theme}>
+                    <TextField
+                      id="standard-search"
+                      label="Search for an artist or song..."
+                      type="search"
+                      margin="normal"
+                      variant="outlined"
+                      onChange={this.handleChange}
+                      fullWidth
+                      style={styles.TextField}
+                    />
+                  </ThemeProvider>
+                </Grid>
+                <Grid item xs={1}>
                   <Button
-                    style={styles.buttonEdit}
-                    variant="outlined"
-                    color="primary"
-                    type="submit"
-                    onClick={() => this.handleClickEdit(song.id)}
-                    song={song}>
-                    Edit
-                      </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outlined"
-                    style={styles.buttonDelete}
+                    style={styles.searchButton}
+                    variant="contained"
                     color="secondary"
-                    onClick={() => this.handleClickDelete(song.id)}
-                    song={song}>
-                    Delete
+                    type="submit"
+                    onClick={this.searchSongs}>
+                    <i class="material-icons">search</i>
+                    Search
+                </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Container>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Title</TableCell>
+                <TableCell>Artist</TableCell>
+                <TableCell>Edit</TableCell>
+                <TableCell>Delete</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.filteredSongs.map(song =>
+                <TableRow key={song.id}>
+                  <TableCell>
+                    {song.title}
+                  </TableCell>
+                  <TableCell>
+                    {song.artist}
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      style={styles.buttonEdit}
+                      variant="outlined"
+                      color="primary"
+                      type="submit"
+                      onClick={() => this.handleClickEdit(song.id)}
+                      song={song}>
+                      Edit
+                      </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="outlined"
+                      style={styles.buttonDelete}
+                      color="secondary"
+                      onClick={() => this.handleClickDelete(song.id)}
+                      song={song}>
+                      Delete
                   </Button>
-                </TableCell>
-              </TableRow>)}
-          </TableBody>
-        </Table>
-      </Container>
+                  </TableCell>
+                </TableRow>)}
+            </TableBody>
+          </Table>
+        </Container>
+      </div>
     );
   }
 }

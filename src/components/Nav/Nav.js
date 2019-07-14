@@ -64,6 +64,7 @@ const Nav = (props) => (
             </Button>
           </>
         )}
+        {/* <LogOut /> */}
       </div>
     </div>
   </div>

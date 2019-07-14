@@ -70,7 +70,7 @@ class ClientSearchPage extends Component {
     return (
       <div>
         <header>
-          <img img width="100%" src="images/mountain.jpg" alt="mountain"></img>
+          <img width="100%" src="images/mountain.jpg" alt="mountain"></img>
         </header>
         <div>
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
