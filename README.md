@@ -22,3 +22,7 @@ For full functionality, you will need to create a local database and tables usin
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
+
+##Acknowledgments
+Mang Wan - Frontend UI, server routing, database queries
+Prime Academy - Register, Login, Authentication
