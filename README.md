@@ -24,5 +24,4 @@ For full functionality, you will need to create a local database and tables usin
 * Navigate to `localhost:3000`
 
 ## Acknowledgments
-Mang Wan - Frontend UI, server routing, database queries
 Prime Academy - Register, Login, Authentication
