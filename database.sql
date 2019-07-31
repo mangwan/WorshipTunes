@@ -83,8 +83,6 @@ CREATE TABLE public."user" (
     is_admin boolean
 );
 
-INSERT INTO "user" (id, first_name, last_name, username, password) VALUES (1, 'mang', 'wan', 'mangwan', 'mangwan');
-
 
 --
 -- Name: user_id_seq; Type: SEQUENCE; Schema: public
